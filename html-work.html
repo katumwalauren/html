@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Login Page </title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: seagreen
+        }
+        button {
+            background-color: green;
+            width: 100%;
+            color: white;
+            padding: 18px;
+            margin: 10px 10px;
+            border: none;
+        }
+        form {
+            border: 2px solid green;
+        }
+        input[type=text],
+        input[type=password] {
+            width: 100%;
+            margin: 9px;
+            padding: 18px 10px;
+            border: 2px solid green;
+            box-sizing: border-box;
+        }
+        
+        .cancelbtn {
+            width: auto;
+            padding: 500px 50px;
+            margin: 100px 70px;
+        }
+        .container {
+            padding: 30px;
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <center>
+            <h1> Login Form </h1>
+        </center>
+        <div class="container">
+            <input type="text" placeholder="Email or Phone" name="username" required>
+            <input type="password" placeholder="Password" name="password" required>
+            <a href="#"> Forgot password? </a>
+            <button type="submit">Login</button>
+            Not a member?
+            <a href="#"> Signup now </a>
+        </div>
+    </form>
+</body>
+
+</html>

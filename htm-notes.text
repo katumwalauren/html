@@ -1,0 +1,76 @@
+each html has three main parts of an element: 
+>>opening tag - is the beginning element ie <h1>
+>> content - this tells the web browser how to display the element
+>> clossing tag - this ends the element ie  </h1>
+**Popular tags;
+<p>; formats texts to a paragraph
+<h1> : displays text as a main heading
+<h2> : formats text as a subheading
+<i> : italicizes text(defines a part of text in an alternate voice or mood)
+<b> : bolds text
+<div> : divides HTML into sections 
+<head> - The head tag is an HTML element used to define the head section of an HTML document
+<title> - The title tag is an HTML code tag that allows you to give a web page a title.
+<link> - link tag defines the relationship between the current document and an external resource eg  <link href="https://fonts.googleapis.com/css?family=Lato: 100,300,400,700|Luckiest+Guy|Oxygen:300,400" rel="stylesheet">
+**formatting text elements;
+<b> - Bold text
+<strong> - Important text
+<em> - Emphasized text
+<mark> - Marked text
+<small> - Smaller text
+<del> - Deleted text
+<ins> - Inserted text
+<sub> - Subscript text(scripts specific words below)
+<sup> - Superscript text(scripts specific words above)
+<big> - big text 
+<del> - delete text
+<img> - image helps to get images to html eg    <img src= "https://content.codecademy.com/courses/web-101/web101-image_brownbear.jpg" />
+<img alt> - alts brings meaning to the image eg     <img src="#" alt="https://content.codecademy.com/courses/web-101/web101-image_brownbear.jpg" />
+<br> - breaks is to break line of code
+<ul> - Unordered Lists order lists into bullets, small circles etc eg 
+<ul> 
+<li>Arctos</li>
+    </ul>
+<ol> - ordred list orders lists into numbers, numerals
+<li> - list item used to represent items in the list
+..atributes eg id are used to specify or give highlights different contents of data. it is usually put btn div eg;
+  <div id="introduction">
+  <video> - <video src="myVideo.mp4" width="320" height="240" controls>Video not supported</video>
+  <a> - The href attribute specifies the URL of the page the link goes to eg  <li><a href="#introduction">Introduction</a></li> 
+  ## for tables
+  <tr> - table rows creats rows to each cell of the table
+  <td> - table data adds data
+  <th> - table headings defines a header cell in an HTML table and it's put btn a table rows
+  >>> scope -  specifies whether a header cell is a header for a column, row, or group of columns or rows
+row - this value makes it clear that the heading is for a row.
+col - this value makes it clear that the heading is for a column.
+  eg <tr>
+   <th scope="col">Sunday</th>
+  </tr>
+  <tr>
+    <th scope="row">Temperature</th>
+    table borders - for easy reading  of the tables
+    colspan - Spanning Columns accepts an integer (greater than or equal to 1) to denote the number of columns it spans across. eg  
+    <tr>
+    <td colspan="2">Out of Town</td>
+    <td>Back in Town</td>
+  </tr>
+  rowspan - Spanning rows used for data that spans multiple rows (perhaps an event goes on for multiple hours on a certain day). It accepts an integer (greater than or equal to 1) to denote the number of rows it spans across
+  <tbody> - should contain all of the table’s data, excluding the table headings (more on this in a later exercise)
+  ##for forms
+  <form> - form contains child elements eg 
+  <form action="/example.html" method="POST">  <h1>Creating a form</h1>
+  <p> the best.</p>
+</form>
+<input> - input is what to be put inside the form  eg
+<form action="/example.html" method="POST">
+  <input type="text" name="first-text-field">
+</form>
+<<The id attribute specifies a unique id for an HTML element.
+<option> should be inside section
+
+
+
+
+
+

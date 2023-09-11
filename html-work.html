@@ -54,8 +54,8 @@
             <h1> Login Form </h1>
         </center>
         <div class="login-container">
-            <input type="text" placeholder="Email or Phone" id ="email" name="username" required>
-            <input type="password" placeholder="Password" id = "password" name="password" required>
+            <input type="text" placeholder="Email or Phone" id="email" name="username" required>
+            <input type="password" placeholder="Password" id="password" name="password" required>
             <a href="#"> Forgot password? </a>
             <button type="submit">Login</button>
             Not a member?
@@ -64,7 +64,7 @@
     </form>
     <script>
         document.getElementById('loginForm').addEventListener('submit', function (event) {
-            event.preventDefault(); 
+            event.preventDefault();
 
             const email = document.getElementById('email').value;
 

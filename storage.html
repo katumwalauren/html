@@ -69,6 +69,8 @@
             const email = document.getElementById('email').value;
             if (email.length < 3) {
                 alert("the provided email is too short");
+            } else if (!email.includes('@')) {
+                alert('Invalid email');
             } else {
                 alert("email entered:" + email);
             }

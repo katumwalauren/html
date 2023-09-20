@@ -120,10 +120,7 @@ document.write() can be used to write directly to the HTML output stream
 >>>> how to use chrome  in htm is by bouble clicking on <html> then go to open with browser then select chrome
 ...The preventDefault()- cancels(decides thet an event will not occur) the event if it is cancelable, meaning that the default action that belongs to the event will not occur
 ...DOMContentLoaded- the most important indicators of how fast your web page loads and how soon your users can interact with it
-
-
-
-
+Padding is the space between the content and the border of an element.
 
 
 

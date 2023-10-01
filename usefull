@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Digital Wallet </title>
+    <style>
+        .text-above {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            padding: 15px;
+            background-color: white;
+            border: 2px solid whitesmoke;
+            border-radius: 15px;
+            width: 500px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        input {
+            width: 100%;
+            /* Change this to 100% for full-width input fields */
+            padding: 10px;
+            /* Reduced padding for better appearance */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .email-input {
+            width: 100%;
+            /* Change this to 100% for full-width input fields */
+        }
+
+        .colored-bracket {
+            display: inline-block;
+            padding: 10px 20px;
+            /* Adjust padding for better appearance */
+            background-color: rgb(0, 60, 255);
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+            /* Add pointer cursor for better user feedback */
+        }
+
+        .circular-bracket {
+            display: inline-block;
+            padding: 2px 8px;
+            background-color: rgb(0, 60, 255);
+            color: white;
+            border-radius: 70px;
+        }
+
+        .wallet {
+            display: flex;
+            align-items: center;
+        }
+
+        .wallet-form {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="text-above">
+        <p>Great!</p>
+        <p>Now, let's open a secure Digital wallet for you.</p>
+    </div>
+
+    <div class="form-group">
+        <div class="container">
+            <p>PERSONAL DETAILS <span class="circular-bracket"> ?</span></p>
+            <form class="wallet-form" id="walletForm">
+                <!-- Added the ID "walletForm" to the form -->
+                <div class="form-group">
+                    <div class="form-container">
+                        <div>
+                            <label for="first-name">First Name:</label>
+                            <input type="text" placeholder="eg John" id="first-name" name="first-name" required>
+                            <!-- Added "required" attribute for required fields -->
+                        </div>
+                        <div>
+                            <label for="last-name">Last Name:</label>
+                            <input type="text" placeholder="eg Doe" id="last-name" name="last-name" required>
+                            <!-- Added "required" attribute for required fields -->
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email-address">Email Address:</label> <!-- Corrected the "for" attribute value -->
+                    <input type="email" class="email-input" placeholder="johndoe@gmail.com" id="email-address"
+                        name="email-address" required>
+                    <!-- Added "type=email" for email validation and "required" attribute -->
+                </div>
+                <div class="form-group">
+                    <div class="form-container">
+                        <div>
+                            <label for="mobile-number">Mobile Number:</label>
+                            <input type="tel" placeholder="eg +1 - 5463545780" id="mobile-number" name="mobile-number"
+                                required> <!-- Added "type=tel" for telephone input and "required" attribute -->
+                        </div>
+                        <div>
+                            <label for="birthdate">Birth Date:</label>
+                            <input type="date" placeholder="eg 2009-04-24" id="birthdate" name="birthdate" required>
+                            <!-- Added "type=date" for date input and "required" attribute -->
+                            <span id="birthdateError" style="color: blue;"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <label>
+                    <input type="checkbox" id="agreeCheckbox" required>
+                    <p> I have read, understood and consent to the language and authorization.</p>
+                </label><br><br>
+                <div class="bottom-text">
+                    <center>
+                        <div class="colored-bracket" id="createAccountButton" onclick="createAccount()"> Agree and
+                            create account -> </div>
+                        <!-- Added the ID "createAccountButton" and onclick event handler -->
+                    </center>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        //clarification of the aggreement
+        function createAccount() {
+            if (document.getElementById("agreeCheckbox").checked) {
+                alert("Account created successfully!");
+                document.getElementById("walletForm").reset();
+            } else {
+                alert("Please agree to the terms and conditions.");
+            }
+        }
+        //checks for dates above 18 yrs
+        document.getElementById("birthdate").addEventListener("input", function () {
+            var birthdateInput = this;
+            var birthdate = new Date(birthdateInput.value);
+            var today = new Date();
+            var minAge = 18;
+
+            var age = today.getFullYear() - birthdate.getFullYear();
+            var birthMonth = birthdate.getMonth();
+            var currentMonth = today.getMonth();
+            if (currentMonth < birthMonth || (currentMonth === birthMonth && today.getDate() < birthdate.getDate())) {
+                age--;
+            }
+
+            if (age < minAge) {
+                document.getElementById("birthdateError").textContent = "You must be at least 18 years old.";
+                birthdateInput.setCustomValidity("You must be at least 18 years old.");
+                document.getElementById("createAccountButton").disabled = true;
+            } else {
+                document.getElementById("birthdateError").textContent = "";
+                birthdateInput.setCustomValidity("");
+                document.getElementById("createAccountButton").disabled = false;
+            }
+        });
+
+
+    </script>
+</body>
+
+</html>
+
+function validateForm() {
+    const birthdateInput = document.getElementById('date-of-birth');
+    var dob = new Date(birthdateInput.value);
+    var today = new Date();
+
+    if (birthdateInput.value === "") {
+        alert("Please enter your date of birth.");
+        birthdateInput.focus();
+        return false;
+    }
+
+    if (dob > today) {
+        alert("Date of birth cannot be in the future.");
+        birthdateInput.focus();
+        return false;
+    }
+
+    const birthdate = new Date(birthdateInput);
+    const today = new Date();
+    const age = today.getFullYear() - birthdate.getFullYear();
+
+    if (today.getMonth() < birthdate.getMonth() || (today.getMonth() === birthdate.getMonth() && today.getDate() < birthdate.getDate())) {
+        age--;
+    }
+
+    if (age < 18) {
+        alert('You must be 18 years or older to sign up.');
+        return false;
+    }
+
+    return true;
+}
+
+
+function createAccount() {
+    if (document.getElementById("agreeCheckbox").checked) {
+        if (validateForm()) {
+            alert("Account created successfully!");
+            document.getElementById("walletForm").reset();
+        }
+    } else {
+        alert("Please agree to the terms and conditions.");
+    }
+}
+
+
+function validateForm() {
+
+    const firstName = document.getElementById('first-name').value.trim();
+    if (firstName === '') {
+        alert('Please enter your First Name.');
+        return false;
+    }
+
+    const lastName = document.getElementById('last-name').value.trim();
+    if (lastName === '') {
+        alert('Please enter your Last Name.');
+        return false;
+    }
+
+    const email = document.getElementById('email-address').value.trim();
+    if (email === '') {
+        alert('Please enter your Email Address.');
+        return false;
+    } else if (!validateEmail(email)) {
+        alert('Please enter a valid Email Address.');
+        return false;
+    }
+
+    const mobileNumber = document.getElementById('mobile-number').value.trim();
+    if (mobileNumber === '') {
+        alert('Please enter your Mobile Number.');
+        return false;
+    }
+
+    if (!document.getElementById("agreeCheckbox").checked) {
+        alert('Please agree to the terms and conditions.');
+        return false;
+    }
+
+    return true;
+}
+
+function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+function validateForm() {
+    const birthdateInput = document.getElementById('date-of-birth');
+    var dob = new Date(birthdateInput.value);
+    var today = new Date();
+
+    if (birthdateInput.value === "") {
+        alert("Please enter your date of birth.");
+        birthdateInput.focus();
+        return false;
+    }
+
+    if (dob > today) {
+        alert("Date of birth cannot be in the future.");
+        birthdateInput.focus();
+        return false;
+    }
+
+    const birthdate = new Date(birthdateInput);
+    const today = new Date();
+    const age = today.getFullYear() - birthdate.getFullYear();
+
+    if (today.getMonth() < birthdate.getMonth() || (today.getMonth() === birthdate.getMonth() && today.getDate() < birthdate.getDate())) {
+        age--;
+    }
+
+    if (age < 18) {
+        alert('You must be 18 years or older to sign up.');
+        return false;
+    }
+
+    return true;
+}
+
+document.getElementById("walletForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    if (validateForm()) {
+        alert("Account created successfully!");
+        document.getElementById("walletForm").reset();
+    }
+});

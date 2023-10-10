@@ -1,0 +1,44 @@
+<!-- Next assignment:
+
+Create a new empty HTML page with a header of "Top schools" where you add the
+list of schools provided using JavaScript.
+
+const topSchools = ["St John", "Green hills", "Kampala parents"]; -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> list of schools</title>
+</head>
+
+<body>
+    <header>
+        <h1>Top Schools</h1>
+        <ul id="school-list">
+
+        </ul>
+    </header>
+
+    <script>
+        const  topSchools = [
+            "St John",
+            "Green hills",
+            "Kampala parents"
+        ];
+
+        function addSchoolsToHeader() {
+            var schoolList = document.getElementById("school-list");
+
+            for (var i = 0; i < topSchools.length; i++) {
+                var schoolName = topSchools[i];
+                var listItem = document.createElement("li");
+                listItem.textContent = schoolName;
+                schoolList.appendChild(listItem);
+            }
+        }
+        addSchoolsToHeader();
+    </script>
+</body>
+
+</html>

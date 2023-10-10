@@ -1,0 +1,46 @@
+```
+// Tradable assets on a minerals market with their unit price in US dollars
+const assets = [
+  { assetId: 1
+  , name: "yellow gold"
+  , price: 1000
+  }
+, { assetId : 2
+  , name: "white gold"
+  , price: 500
+  }
+, { assetId:  3
+  , name: "silver"
+  , price: 100
+  }
+]
+
+// traders buying various assets on the minerals market
+const traders =
+  [ {name: "John Doe",  traderId: 1}
+  , {name: "Jane Doe",  traderId: 2}
+  , {name: "Mary Hill", traderId: 3}
+  ]
+
+// trades executed by the traders
+const trades =
+  [ {date: "2022-01-01", tradeId: 1, tradeType: "sale", amount: 5, traderId: 1, assetId: 1}
+  , {date: "2022-01-01", tradeId: 2, tradeType: "buy",  amount: 2, traderId: 2, assetId: 2}
+  , {date: "2022-01-01", tradeId: 1, tradeType: "sale", amount: 2, traderId: 1, assetId: 1}
+  , {date: "2022-01-03", tradeId: 1, tradeType: "sale", amount: 1, traderId: 2, assetId: 3}
+  , {date: "2022-01-03", tradeId: 2, tradeType: "sale", amount: 9, traderId: 3, assetId: 1}
+  , {date: "2022-01-04", tradeId: 3, tradeType: "buy",  amount: 5, traderId: 3, assetId: 2}
+  , {date: "2022-01-04", tradeId: 1, tradeType: "sale", amount: 2, traderId: 1, assetId: 2}
+  ]
+
+```
+
+Given the above data create an HTML table for the trade data with the following columns: 
+
+date, tradeType, amount, tradersName &  assetName
+
+Next assignment: 
+
+Create a new empty HTML page with a header of "Top schools" where you add the list of schools provided using JavaScript.
+
+const topSchools = ["St John", "Green hills", "Kampala parents"]; 

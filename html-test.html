@@ -1,243 +1,34 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> Digital Wallet </title>
-    <style>
-        .text-above {
-            text-align: center;
-            font-size: 18px;
-            margin-bottom: 20px;
-        }
-
-        .container {
-            padding: 15px;
-            background-color: white;
-            border: 2px solid whitesmoke;
-            border-radius: 15px;
-            width: 500px;
-            margin: 0 auto;
-            height: 310px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 3px;
-        }
-
-        input {
-            width: 85%;
-            /* Change this to 100% for full-width input fields */
-            padding: 10px;
-            /* Reduced padding for better appearance */
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .email-input {
-            width: 93%;
-            /* Change this to 100% for full-width input fields */
-        }
-
-        .colored-bracket {
-            display: inline-block;
-            padding: 10px 20px;
-            /* Adjust padding for better appearance */
-            background-color: rgb(0, 60, 255);
-            color: white;
-            border-radius: 20px;
-            cursor: pointer;
-            /* Add pointer cursor for better user feedback */
-        }
-
-        .circular-bracket {
-            display: inline-block;
-            padding: 2px 8px;
-            background-color: rgb(0, 60, 255);
-            color: white;
-            border-radius: 70px;
-        }
-
-        .wallet {
-            display: flex;
-            align-items: center;
-        }
-
-        .wallet-form {
-            margin-bottom: 20px;
-        }
-
-        .checkbox-input {
-            width: 3%;
-        }
-
-        .checkbox-text {
-            font-size: 16px;
-            margin-left: 5px;
-            color: #333;
-        }
-    </style>
+    <title>HTML Table Example</title>
 </head>
-
 <body>
-    <div class="text-above">
-        <p>Great!</p>
-        <p>Now, let's open a secure Digital wallet for you.</p>
-    </div>
 
-    <div class="form-group">
-        <div class="container">
-            <p>PERSONAL DETAILS <span class="circular-bracket"> ?</span></p>
-            <form class="wallet-form" id="walletForm">
-                <!-- Added the ID "walletForm" to the form -->
-                <div class="form-group">
-                    <div class="form-container">
-                        <div>
-                            <label for="first-name">First Name:</label>
-                            <input type="text" placeholder="eg John" id="first-name" name="first-name" required>
-                            <!-- Added "required" attribute for required fields -->
-                        </div>
-                        <div>
-                            <label for="last-name">Last Name:</label>
-                            <input type="text" placeholder="eg Doe" id="last-name" name="last-name" required>
-                            <!-- Added "required" attribute for required fields -->
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="email-address">Email Address:</label> <!-- Corrected the "for" attribute value -->
-                    <input type="email" class="email-input" placeholder="johndoe@gmail.com" id="email-address"
-                        name="email-address" required>
-                    <!-- Added "type=email" for email validation and "required" attribute -->
-                </div>
-                <div class="form-group">
-                    <div class="form-container">
-                        <div>
-                            <label for="mobile-number">Mobile Number:</label>
-                            <input type="tel" placeholder="eg +1 - 5463545780" id="mobile-number" name="mobile-number"
-                                required> <!-- Added "type=tel" for telephone input and "required" attribute -->
-                        </div>
-                        <div>
-                            <label for="birthdate">Birth Date:</label>
-                            <input type="date" placeholder="eg 24 April 2009" id="birthdate" name="birthdate" required>
-                            <!-- Added "type=date" for date input and "required" attribute -->
-                            <span id="birthdateError" style="color: blue;"></span>
-                        </div>
-                    </div>
-                </div>
+<h1>Results Table</h1>
 
-                <label>
-                    <input type="checkbox" class="checkbox-input" id="agreeCheckbox" required>
-                    <span class="checkbox-text"> I have read, understood and consent to the language and
-                        authorization.</span>
-                </label><br><br>
-                <div class="bottom-text">
-                    <center>
-                        <div class="colored-bracket" id="createAccountButton" onclick="createAccount()"> Agree and
-                            create account -> </div>
-                        <!-- Added the ID "createAccountButton" and onclick event handler -->
-                    </center>
-                </div>
-            </form>
-        </div>
-    </div>
+<table border="1">
+    <tr>
+        <th>Column 1</th>
+        <th>Column 2</th>
+        <th>Column 3</th>
+    </tr>
+    <tr>
+        <td>Result 1A</td>
+        <td>Result 1B</td>
+        <td>Result 1C</td>
+    </tr>
+    <tr>
+        <td>Result 2A</td>
+        <td>Result 2B</td>
+        <td>Result 2C</td>
+    </tr>
+    <tr>
+        <td>Result 3A</td>
+        <td>Result 3B</td>
+        <td>Result 3C</td>
+    </tr>
+</table>
 
-    <script>
-        function createAccount() {
-            if (validateForm()) {
-                alert("Account created successfully!");
-                document.getElementById("walletForm").reset();
-            }
-        }
-
-        function validateForm() {
-            // Check if the first name is filled
-            const firstName = document.getElementById('first-name').value.trim();
-            if (firstName === '') {
-                alert('Please enter your First Name.');
-                return false;
-            }
-
-            // Check if the last name is filled
-            const lastName = document.getElementById('last-name').value.trim();
-            if (lastName === '') {
-                alert('Please enter your Last Name.');
-                return false;
-            }
-
-            // Check if the email address is filled and is a valid email format
-            const email = document.getElementById('email-address').value.trim();
-            if (email === '') {
-                alert('Please enter your Email Address.');
-                return false;
-            } else if (!validateEmail(email)) {
-                alert('Please enter a valid Email Address.');
-                return false;
-            }
-
-            // Check if the mobile number is filled
-            const mobileNumber = document.getElementById('mobile-number').value.trim();
-            if (mobileNumber === '') {
-                alert('Please enter your Mobile Number.');
-                return false;
-            }
-
-            // Check if the birthdate is filled and valid
-            const birthdate = document.getElementById('birthdate').value.trim();
-            if (birthdate === '' || !validateBirthdate()) {
-                alert('Please enter a valid Birth Date.');
-                return false;
-            }
-
-            // Check if the terms and conditions checkbox is checked
-            if (!document.getElementById("agreeCheckbox").checked) {
-                alert('Please agree to the terms and conditions.');
-                return false;
-            }
-
-            return true;
-        }
-
-        // Function to validate an email address using a simple regular expression
-        function validateEmail(email) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailRegex.test(email);
-        }
-
-        function validateBirthdate() {
-            const birthdateInput = document.getElementById('birthdate');
-            const birthdate = new Date(birthdateInput.value);
-
-            if (isNaN(birthdate.getTime()) || birthdate > new Date()) {
-                alert('Please enter a valid birthdate.');
-                birthdateInput.value = '';
-                return false;
-            }
-            return true;
-        }
-
-        // Add an event listener to the form for submission
-        document.getElementById("walletForm").addEventListener("submit", function (event) {
-            event.preventDefault(); // Prevent the default form submission
-
-            // Call the validateForm function to validate the inputs
-            if (validateForm()) {
-                alert("Account created successfully!");
-                document.getElementById("walletForm").reset();
-            }
-        });
-    </script>
 </body>
 </html>

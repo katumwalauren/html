@@ -1,0 +1,56 @@
+<!--const topschools =
+[{schoolName: "St John", performancelnPercent: "50"},
+{schoolName: "St Mary", performancelnPercent: "100"},
+{schoolName: "Kampala Parents", performancelnPercent: "80"}
+];
+Create a new empty HTML page with a "School Performance" header where you add a table
+View Or the provided schools data using Javascript -->
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>School Performance Table</title>
+</head>
+
+<body>
+    <header>
+        <h1>School Performance Report</h1>
+    </header>
+    <table id="schoolTable" border="2">
+            <tr>
+                <th>School Name</th>
+                <th>School Performance</th>
+            </tr>
+    </table>
+
+    <script>
+        const schools =
+            [{ schoolName: "St John", performancelnPercent: "50" },
+            { schoolName: "St Mary", performancelnPercent: "100" },
+            { schoolName: "Kampala Parents", performancelnPercent: "80" }
+            ];
+        function populateSchoolTable() {
+            const tableBody = document.querySelector("#schoolTable tbody");
+
+            schools.forEach(school => {
+                const row = document.createElement("tr");
+
+                const nameCell = document.createElement("td");
+                nameCell.textContent = school.schoolName; 
+
+                const performanceCell = document.createElement("td");
+                performanceCell.textContent = school.performancelnPercent; 
+
+                row.appendChild(nameCell);
+                row.appendChild(performanceCell);
+
+                tableBody.appendChild(row);
+            });
+        }
+        populateSchoolTable();
+    </script>
+</body>
+
+</html>

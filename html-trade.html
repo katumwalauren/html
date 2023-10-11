@@ -1,46 +1,105 @@
 ```
-// Tradable assets on a minerals market with their unit price in US dollars
+<!--// Tradable assets on a minerals market with their unit price in US dollars
 const assets = [
-  { assetId: 1
-  , name: "yellow gold"
-  , price: 1000
-  }
+{ assetId: 1
+, name: "yellow gold"
+, price: 1000
+}
 , { assetId : 2
-  , name: "white gold"
-  , price: 500
-  }
-, { assetId:  3
-  , name: "silver"
-  , price: 100
-  }
+, name: "white gold"
+, price: 500
+}
+, { assetId: 3
+, name: "silver"
+, price: 100
+}
 ]
 
 // traders buying various assets on the minerals market
 const traders =
-  [ {name: "John Doe",  traderId: 1}
-  , {name: "Jane Doe",  traderId: 2}
-  , {name: "Mary Hill", traderId: 3}
-  ]
+[ {name: "John Doe", traderId: 1}
+, {name: "Jane Doe", traderId: 2}
+, {name: "Mary Hill", traderId: 3}
+]
 
 // trades executed by the traders
 const trades =
-  [ {date: "2022-01-01", tradeId: 1, tradeType: "sale", amount: 5, traderId: 1, assetId: 1}
-  , {date: "2022-01-01", tradeId: 2, tradeType: "buy",  amount: 2, traderId: 2, assetId: 2}
-  , {date: "2022-01-01", tradeId: 1, tradeType: "sale", amount: 2, traderId: 1, assetId: 1}
-  , {date: "2022-01-03", tradeId: 1, tradeType: "sale", amount: 1, traderId: 2, assetId: 3}
-  , {date: "2022-01-03", tradeId: 2, tradeType: "sale", amount: 9, traderId: 3, assetId: 1}
-  , {date: "2022-01-04", tradeId: 3, tradeType: "buy",  amount: 5, traderId: 3, assetId: 2}
-  , {date: "2022-01-04", tradeId: 1, tradeType: "sale", amount: 2, traderId: 1, assetId: 2}
-  ]
+[ {date: "2022-01-01", tradeId: 1, tradeType: "sale", amount: 5, traderId: 1, assetId: 1}
+, {date: "2022-01-01", tradeId: 2, tradeType: "buy", amount: 2, traderId: 2, assetId: 2}
+, {date: "2022-01-01", tradeId: 1, tradeType: "sale", amount: 2, traderId: 1, assetId: 1}
+, {date: "2022-01-03", tradeId: 1, tradeType: "sale", amount: 1, traderId: 2, assetId: 3}
+, {date: "2022-01-03", tradeId: 2, tradeType: "sale", amount: 9, traderId: 3, assetId: 1}
+, {date: "2022-01-04", tradeId: 3, tradeType: "buy", amount: 5, traderId: 3, assetId: 2}
+, {date: "2022-01-04", tradeId: 1, tradeType: "sale", amount: 2, traderId: 1, assetId: 2}
+]
 
 ```
 
-Given the above data create an HTML table for the trade data with the following columns: 
+Given the above data create an HTML table for the trade data with the following columns:
+date, tradeType, amount, tradersName & assetName -->
+<!DOCTYPE html>
+<html>
 
-date, tradeType, amount, tradersName &  assetName
+<head>
+  <title>data trade Table</title>
+</head>
 
-Next assignment: 
+<body>
+  <header>
+    <h1>Data trade Report</h1>
+  </header>
+  <table id="tradeTable" border="2">
+    <tr>
+      <th>Date</th>
+      <th>tradeType</th>
+      <th>amount</th>
+      <th>tradersName</th>
+      <th>assetName</th>
+    </tr>
+  </table>
 
-Create a new empty HTML page with a header of "Top schools" where you add the list of schools provided using JavaScript.
+  <script>
+    const trades =
+      [{ date: "2022-01-01", tradeId: 1, tradeType: "sale", amount: 5, traderId: 1, assetId: 1 }
+        , { date: "2022-01-01", tradeId: 2, tradeType: "buy", amount: 2, traderId: 2, assetId: 2 }
+        , { date: "2022-01-01", tradeId: 1, tradeType: "sale", amount: 2, traderId: 1, assetId: 1 }
+        , { date: "2022-01-03", tradeId: 1, tradeType: "sale", amount: 1, traderId: 2, assetId: 3 }
+        , { date: "2022-01-03", tradeId: 2, tradeType: "sale", amount: 9, traderId: 3, assetId: 1 }
+        , { date: "2022-01-04", tradeId: 3, tradeType: "buy", amount: 5, traderId: 3, assetId: 2 }
+        , { date: "2022-01-04", tradeId: 1, tradeType: "sale", amount: 2, traderId: 1, assetId: 2 }
+      ]
+    function populateTradeTable() {
+      const tableBody = document.querySelector("#tradeTable tbody");
 
-const topSchools = ["St John", "Green hills", "Kampala parents"]; 
+      trades.forEach(trade => {
+        const row = document.createElement("tr");
+
+        const dateCell = document.createElement("td");
+        dateCell.textContent = trade.date;
+
+        const tradeTypeCell = document.createElement("td");
+        tradeTypeCell.textContent = trade.tradeType;
+
+        const amountCell = document.createElement("td");
+        amountCell.textContent = trade.amount;
+
+        const traderIdCell = document.createElement("td");
+        traderIdCell.textContent = trade.tradeId;
+
+        const assetIdCell = document.createElement("td");
+        assetIdCell.textContent = trade.assetId;
+
+        row.appendChild(dateCell);
+        row.appendChild(tradeTypeCell);
+        row.appendChild(amountCell);
+        row.appendChild(traderIdCell);
+        row.appendChild(assetIdCell);
+
+        tableBody.appendChild(row);
+      });
+    }
+    populateTradeTable();
+  </script>
+</body>
+
+</html>

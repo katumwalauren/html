@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Animated Accordion</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            padding: 15px;
+            background-color: black;
+            border: 2px solid grey;
+            border-radius: 15px;
+            margin: 0 auto;
+            height: 1000px;
+        }
+
+        .accordion {
+            display: flex;
+            flex-direction: row;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .accordion-item {
+            background-color: grey;
+            border: 1px solid grey;
+            border-radius: 4px;
+            margin: 5px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .accordion-header {
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            text-align: left;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            user-select: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .editor-container {
+            width: 30%;
+            margin: 0 auto;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        .editor-toolbar button {
+            margin-right: 10px;
+        }
+
+        .editor {
+            border: 1px solid gray;
+            padding: 10px;
+            height: 300px;
+        }
+
+        .editor-container-row {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="accordion">
+            <div class="editor-container-row">
+                <div class="editor-container">
+                    <div class="editor-toolbar">
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span style="width: 20px; height: 20px; background-color: red; text-align: center;
+                                 line-height: 20px; color: black; font-weight: bold;font-size: 16px; 
+                                 display: inline-block; margin-right: 10px;">
+                                    <div class="colored-bracket">/</div>
+                                </span>
+                                HTML
+                            </div>
+                            <div class="accordion-content"></div>
+                            <div class="editor" contenteditable="true"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="editor-container-row">
+                    <div class="editor-toolbar">
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span style="width: 20px; height: 20px; background-color: blue; text-align: center;
+                                    line-height: 30px; color: black; font-weight: bold; font-size: 30px; 
+                                    display: inline-block; display: inline-block; margin-right: 10px;">
+                                    <div class="colored-bracket">*</div>
+                                </span>
+                                CSS(scss)
+                            </div>
+                            <div class="accordion-content"></div>
+                            <div class="editor" contenteditable="true"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="editor-container-row">
+                    <div class="editor-toolbar">
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span style="width: 20px; height: 20px; background-color: yellow; text-align: center;
+                                    line-height: 20px; color: black; font-weight: bold;font-size: 16px; 
+                                    display: inline-block; display: inline-block; margin-right: 10px;">
+                                    <div class="colored-bracket">( )</div>
+                                </span>
+                                JS
+                            </div>
+                            <div class="accordion-content"> </div>
+                            <div class="editor" contenteditable="true"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const items = document.querySelectorAll('.accordion-item');
+
+        items.forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.toggle('open');
+            });
+        });
+
+        const boldButtons = document.querySelectorAll('.bold-button');
+        const italicButtons = document.querySelectorAll('.italic-button');
+
+        // Add event listeners for toolbar buttons
+        boldButtons.forEach(boldButton => {
+            boldButton.addEventListener("click", function () {
+                document.execCommand("bold", false, null);
+            });
+        });
+
+        italicButtons.forEach(italicButton => {
+            italicButton.addEventListener("click", function () {
+                document.execCommand("italic", false, null);
+            });
+        });
+
+        // Save the editor content to local storage (you may use a backend for real storage)
+        const editors = document.querySelectorAll('.editor');
+        editors.forEach(editor => {
+            editor.addEventListener("input", function () {
+                const content = editor.innerHTML;
+                localStorage.setItem("editorContent", content);
+            });
+
+            // Restore content from local storage on page load
+            const savedContent = localStorage.getItem("editorContent");
+            if (savedContent) {
+                editor.innerHTML = savedContent;
+            }
+        });
+    </script>
+    </div>
+</body>
+
+</html>

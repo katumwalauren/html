@@ -1,0 +1,43 @@
+<!--5a)create a <script> element. inside the <script>, create a variable called
+name and save your name in a variable (as a string)
+5b)continuing with the question, display the message "my name is: ${name}" in
+the console(insert the 'name' variable created in the above question  in to this message)-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>the variable name</title>
+</head>
+
+<body>
+    <h1>Script Example</h1>
+    <script>
+        var name = "Lauren"
+        console.log(`my name is: ${name}`)
+    </script>
+</body>
+
+</html>
+
+<!--5c) At a restaurant, you order 1 cup of coffe($5), 2bagels($3@), and 1 soup($9). calculate
+the cost and save it in avariable called cost.-->
+const coffeePrice = $5;
+const bagelPrice = $3;
+const soupPrice = $9;
+
+const numberOfCoffees = 1;
+const numberOfBagels = 2;
+const numberOfSoups = 1;
+
+const cost = (coffeePrice * numberOfCoffees) + (bagelPrice * numberOfBagels) + 
+(soupPrice * numberOfSoups);
+<!--5d) continuing, display 'cost of food:${cost}' in the console-->
+console.log(`Cost of food: $${cost}`);
+
+<!--5e) Let say the restaurant charges a 10% tax. using the 'cost' variable from 5c), calculate the 
+tax(hint multiply by 0.1),and save the result in a variable-->
+const taxRate = 0.1(10/100); 
+const tax = cost * taxRate;
+
+console.log(`Tax: $${tax}`);

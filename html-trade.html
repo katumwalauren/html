@@ -53,21 +53,46 @@ date, tradeType, amount, tradersName & assetName -->
       <th>Date</th>
       <th>tradeType</th>
       <th>amount</th>
-      <th>tradersName</th>
+      <th>traderName</th>
       <th>assetName</th>
     </tr>
   </table>
 
   <script>
-    const trades =
-      [{ date: "2022-01-01", tradeId: 1, tradeType: "sale", amount: 5, traderId: 1, assetId: 1 }
-        , { date: "2022-01-01", tradeId: 2, tradeType: "buy", amount: 2, traderId: 2, assetId: 2 }
-        , { date: "2022-01-01", tradeId: 1, tradeType: "sale", amount: 2, traderId: 1, assetId: 1 }
-        , { date: "2022-01-03", tradeId: 1, tradeType: "sale", amount: 1, traderId: 2, assetId: 3 }
-        , { date: "2022-01-03", tradeId: 2, tradeType: "sale", amount: 9, traderId: 3, assetId: 1 }
-        , { date: "2022-01-04", tradeId: 3, tradeType: "buy", amount: 5, traderId: 3, assetId: 2 }
-        , { date: "2022-01-04", tradeId: 1, tradeType: "sale", amount: 2, traderId: 1, assetId: 2 }
-      ]
+    const trades = [
+      { date: "2022-01-01", tradeId: 1, tradeType: "sale", amount: 5, traderId: 1, assetId: 1 },
+      { date: "2022-01-01", tradeId: 2, tradeType: "buy", amount: 2, traderId: 2, assetId: 2 },
+      { date: "2022-01-01", tradeId: 1, tradeType: "sale", amount: 2, traderId: 1, assetId: 1 },
+      { date: "2022-01-03", tradeId: 1, tradeType: "sale", amount: 1, traderId: 2, assetId: 3 },
+      { date: "2022-01-03", tradeId: 2, tradeType: "sale", amount: 9, traderId: 3, assetId: 1 },
+      { date: "2022-01-04", tradeId: 3, tradeType: "buy", amount: 5, traderId: 3, assetId: 2 },
+      { date: "2022-01-04", tradeId: 1, tradeType: "sale", amount: 2, traderId: 1, assetId: 2 }
+    ];
+
+    const traders = [
+      { name: "John Doe", traderId: 1 },
+      { name: "Jane Doe", traderId: 2 },
+      { name: "Mary Hill", traderId: 3 }
+    ];
+
+    const assets = [
+      {
+        assetId: 1,
+        name: "yellow gold",
+        price: 1000
+      },
+      {
+        assetId: 2,
+        name: "white gold",
+        price: 500
+      },
+      {
+        assetId: 3,
+        name: "silver",
+        price: 100
+      }
+    ];
+
     function populateTradeTable() {
       const tableBody = document.querySelector("#tradeTable tbody");
 
@@ -83,11 +108,13 @@ date, tradeType, amount, tradersName & assetName -->
         const amountCell = document.createElement("td");
         amountCell.textContent = trade.amount;
 
+        const trader = traders.find(trader => trader.traderId === trade.traderId);
         const traderIdCell = document.createElement("td");
-        traderIdCell.textContent = trade.tradeId;
+        traderIdCell.textContent = trader ? trader.name : "Unknown";
 
+        const asset = assets.find(asset => asset.assetId === trade.assetId);
         const assetIdCell = document.createElement("td");
-        assetIdCell.textContent = trade.assetId;
+        assetIdCell.textContent = asset ? asset.name : "Unknown";
 
         row.appendChild(dateCell);
         row.appendChild(tradeTypeCell);

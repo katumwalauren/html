@@ -41,3 +41,50 @@ const taxRate = 0.1(10/100);
 const tax = cost * taxRate;
 
 console.log(`Tax: $${tax}`);
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+</head>
+<body>
+    <div id="calculator">
+        <div id="display">0</div>
+        <button id="iButton">i</button>
+        <button id="number2Button">2</button>
+        <button id="number3Button">3</button>
+        <button id="plusButton">+</button>
+    </div>
+
+    <script>
+        // Initialize the calculations string
+        let calculations = "";
+
+        // Function to update the display with the current calculations
+        function updateDisplay() {
+            document.getElementById("display").textContent = calculations;
+        }
+
+        // Add event listeners to each button
+        document.getElementById("iButton").addEventListener("click", function () {
+            calculations += "i";
+            updateDisplay();
+        });
+
+        document.getElementById("number2Button").addEventListener("click", function () {
+            calculations += "2";
+            updateDisplay();
+        });
+
+        document.getElementById("number3Button").addEventListener("click", function () {
+            calculations += "3";
+            updateDisplay();
+        });
+
+        document.getElementById("plusButton").addEventListener("click", function () {
+            calculations += " + ";
+            updateDisplay();
+        });
+    </script>
+</body>
+</html>

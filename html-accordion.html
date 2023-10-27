@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Accordion Example</title>
+    <style>
+        .accordion {
+            max-width: 9000px;
+            margin: 0 auto;
+            font-family: Arial, sans-serif;
+        }
+
+        .accordion-content {
+            padding: 10px;
+            display: none;
+            height: 200px;
+        }
+
+        .accordion-item {
+            background-color: white;;
+            border-top: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .accordion-title:hover {
+            background-color: darkgreen;
+        }
+
+        .accordion-title {
+            background-color: green;
+            padding: 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .accordion-item.active .accordion-content {
+            display: block;
+        }
+
+        .accordion-toggle {
+            font-size: 30px;
+            display: inline-block;
+            transition: transform 0.3s ease;
+            margin-right: auto;
+        }
+
+        .accordion-item.active .accordion-toggle {
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="accordion">
+        <div class="accordion-item">
+            <div class="accordion-title">
+                <span class="accordion-toggle">+</span> First Accordion heading
+            </div>
+            <div class="accordion-content">
+                <p>This is my first accordion heading.</p>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-title">
+                <span class="accordion-toggle">+</span> Second Accordion heading
+            </div>
+            <div class="accordion-content">Content for my second accordion heading.</div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-title">
+                <span class="accordion-toggle">+</span> Third Accordion heading
+            </div>
+            <div class="accordion-content">Content for my third accordion heading.</div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const accordionItems = document.querySelectorAll(".accordion-item");
+
+            accordionItems.forEach((item) => {
+                const title = item.querySelector(".accordion-title");
+
+                title.addEventListener("click", function () {
+                    item.classList.toggle("active");
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

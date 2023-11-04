@@ -1,278 +1,394 @@
-
 <!DOCTYPE html>
 <html>
 
 <head>
     <style>
-        body {
-            font-family: 'Open Sans', sans-serif;
-            background: radial-gradient(circle, #fff, #ccc);
-        }
-
         h1 {
-            text-align: center;
-            color: #4DB6AC;
-            font-size: 72px;
-            text-shadow: 2px 2px 1px #ccc;
-            margin-top: 10px;
+            font-size: 80px;
+            color: rgb(0, 128, 117);
+            text-shadow: 3px 3px 4px rgb(51, 51, 51);
+            margin-top: -20px;
         }
 
-        #mainBox {
-            width: 600px;
-            height: 450px;
-            background-color: #4DB6AC;
-            margin: -45px auto;
+        .game-container {
+            border: 2px solid rgb(0, 128, 117);
+            padding: 10px;
+            text-align: center;
+            background-color: rgb(0, 128, 117);
             border-radius: 10px;
-            position: relative;
-            padding: 20px;
-        }
-
-        #scoreBox {
-            background-color: #fff;
+            width: 600px;
+            height: 550px;
             position: absolute;
-            padding: 10px;
-            border-radius: 5px;
-            left: 500px;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -35%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
-        #correctBox {
-            background-color: lightgreen;
-            position: absolute;
-            padding: 10px;
-            color: #fff;
-            left: 280px;
-            border-radius: 5px;
-            display: none;
-
-        }
-
-        #wrongBox {
-            background-color: lightcoral;
-            position: absolute;
-            padding: 10px;
-            color: #fff;
-            left: 280px;
-            border-radius: 5px;
-            display: none;
-        }
-
-        #questionBox {
-            background-color: orange;
-            height: 120px;
-            width: 450px;
-            margin: 50px auto 10px auto;
-            font-size: 100px;
-            color: #fff;
-            text-align: center;
-        }
-
-        #instructionBox {
-            background-color: lightslategray;
-            height: 50px;
-            width: 450px;
-            margin: 10px auto;
-            text-align: center;
-            line-height: 45px;
-            color: #fff;
-        }
-
-        #choiceBox {
-            height: 100px;
-            width: 450px;
-            margin: 5px auto;
-        }
-
-        .box {
-            height: 85px;
-            width: 85px;
-            background-color: #fff;
-            float: left;
-            margin-right: 36px;
-            cursor: pointer;
-            text-align: center;
-            line-height: 80px;
-
-        }
-
-        .box:hover,
-        #startresetBox:hover {
-            background-color: lightblue;
-            color: #fff;
-        }
-
-        .box:active,
-        #startresetBox:active {
-            background-color: lightgray;
-
-        }
-
-        .box:last-child {
-            margin-right: 0;
-        }
-
-        #startresetBox {
-            background-color: #ccc;
-            position: relative;
-            margin: 0 auto;
-            width: 85px;
-            padding: 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            text-align: center;
-        }
-
-        #timeremainingBox {
-            background-color: lightgreen;
-            position: absolute;
-            top: 300px;
-            width: 185px;
-            padding: 20px;
-            border-radius: 5px;
-            text-align: center;
-            display: none;
-        }
-
-        #gameOverBox {
-            position: absolute;
-            height: 200px;
+        .content-container {
             width: 500px;
-            background-color: rgba(255, 255, 255, 0.87);
-            text-align: center;
-            font-size: 32px;
-            top: 150px;
-            left: 68px;
-            display: none;
+            margin: -30px auto;
+            flex-direction: column;
+            align-items: center;
+        }
 
+        .question-container {
+            width: 100%;
+            height: 130px;
+            background-color: rgb(255, 162, 0);
+            margin-top: -70px;
+        }
+
+        body {
+            background-color: lightgrey;
+        }
+
+        #question {
+            font-size: 95px;
+            color: white;
+        }
+
+        #answer-choices {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: -9px;
+            justify-content: center;
+        }
+
+        #answer-choices button {
+            font-size: 30px;
+            width: 100px;
+            height: 90px;
+            background-color: white;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #result {
+            font-size: 50px;
+            color: white;
+        }
+
+
+        .score-container {
+            text-align: right;
+            margin: 0 10px 0;
+            background-color: white;
+            border-radius: 5px;
+            width: auto;
+            padding: 5px;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            z-index: 1;
+            height: auto;
+            display: inline-block;
+        }
+
+        #score {
+            font-size: 20px;
+            color: black;
+            margin: 0;
+        }
+
+        .text-container {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin: 10px;
+            background-color: grey;
+            height: 60px;
+            width: 100%;
+        }
+
+        #text {
+            font-size: 24px;
+            color: white;
+        }
+
+        .start-game-container {
+            text-align: center;
+            margin: 10px;
+            width: 100%;
+        }
+
+        .start-game-container button {
+            font-size: 20px;
+            padding: 5px;
+            margin: 5px;
+            background-color: grey;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            height: 75px;
+        }
+
+        .start-game-container button:hover {
+            background-color: rgb(0, 113, 128);
+        }
+
+        .start-game-container button:active {
+            background-color: lightgray;
+        }
+
+        #countdown {
+            font-size: 24px;
+            color: white;
+        }
+
+        .comment-container {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            background-color: #3498db;
+            color: #fff;
+            font-size: 20px;
+            padding: 10px;
+            display: none;
+            z-index: 1;
+            top: 10px;
+        }
+
+        .countdown-container {
+            position: absolute;
+            left: 20px;
+            bottom: 73px;
+            z-index: 1;
+            font-size: 24px;
+            color: black;
+            display: flex;
+            background-color: lightgreen;
+            width: 37%;
+            height: 60px;
+            text-align: center;
+            border-radius: 5px;
+            justify-content: center;
+            align-items: center;
         }
     </style>
 </head>
 
 <body>
-
-    <h1>Math Game</h1>
-    <div id="mainBox">
-        <div id="scoreBox">
-            Your Score : <span id="scorevalue"></span>
+    <form id="mathGame">
+        <center>
+            <h1>Math Game</h1>
+        </center>
+        <div class="game-container">
+            <div class="content-container">
+                <div class="score-container">
+                    <p id="score">Your Score: 0</p>
+                </div>
+                <div class="comment-container" id="comment-container"></div>
+                <div class="question-container">
+                    <p id="question">3 x 7</p>
+                </div>
+                <div class="text-container">
+                    <p id="text">Click on the correct answer</p>
+                </div>
+                <div id="answer-choices"></div>
+                <p id="result"></p>
+                <div class="start-game-container">
+                    <button id="start-button">Start Game</button>
+                    <span id="restart-text" style="display: none;"></span>
+                </div>
+            </div>
+            <div class="countdown-container" style="display: none;">
+                <span id="countdown"></span>
+            </div>
         </div>
-        <div id="correctBox">Correct</div>
-        <div id="wrongBox">Try again</div>
-        <div id="questionBox"> </div>
-        <div id="choiceBox">
-            <div id="box1" class="box"></div>
-            <div id="box2" class="box"></div>
-            <div id="box3" class="box"></div>
-            <div id="box4" class="box"></div>
-        </div>
-        <div id="startresetBox">Start Game</div>
-        <div id="timeremainingBox">
-            Time remaining : <span id="timeremainingvalue"></span> Sec
-        </div>
-        <div id="gameOverBox"> </div>
-    </div>
+    </form>
     <script>
-        var playing = false;
-        var score;
-        var action;
-        var timeremaining;
-        var correctAnswer;
-        
-        document.getElementById("startresetBox").onclick =
-            function () {
-                if (playing == true) {
-                    location.reload(); 
-                } else { 
-                    playing = true;
-                    score = 0;
-                    document.getElementById("scorevalue").innerHTML =
-                        score;
-                    show("timeremainingBox");
-                    timeremaining = 60;
-                    document.getElementById("timeremainingvalue").innerHTML =
-                        timeremaining;
-                    hide("gameOverBox");
-                    document.getElementById("startresetBox").innerHTML =
-                        "Reset Game";
-                    startCountdown();
-                    generateQA();
+        const questionElement = document.getElementById("question");
+        const answerChoicesElement = document.getElementById("answer-choices");
+        const resultElement = document.getElementById("result");
+        const commentContainer = document.getElementById("comment-container");
+        const commentElement = document.getElementById("comment-container");
+
+        let correctAnswers = 0;
+        let totalQuestions = 0;
+        let playerAnswers = [];
+        let remainingTime = 60;
+        let timerInterval;
+        let gameStarted = false;
+        let gameInProgress = false;
+        let questionFrozen = false;
+
+        function generateQuestion() {
+            if (questionFrozen) {
+                return;
+            }
+            const num1 = Math.floor(Math.random() * 10) + 1;
+            const num2 = Math.floor(Math.random() * 10) + 1;
+            const correctAnswer = num1 * num2;
+
+            questionElement.textContent = ` ${num1} x ${num2}`;
+
+            const answerChoices = generateAnswerChoices(correctAnswer);
+
+            resultElement.textContent = "";
+
+            answerChoicesElement.innerHTML = "";
+            answerChoices.forEach((choice) => {
+                const button = document.createElement("button");
+                button.textContent = choice;
+                button.onclick = () => checkAnswer(choice, correctAnswer);
+                answerChoicesElement.appendChild(button);
+            });
+        }
+
+        function generateAnswerChoices(correctAnswer) {
+            const answerChoices = [correctAnswer];
+
+            while (answerChoices.length < 4) {
+                const randomAnswer = Math.floor(Math.random() * 100) + 1;
+
+                if (!answerChoices.includes(randomAnswer) && randomAnswer !== correctAnswer) {
+                    answerChoices.push(randomAnswer);
                 }
             }
-        for (i = 1; i < 5; i++) {
-            document.getElementById("box" + i).onclick = function () {
-                if (playing == true) { 
-                    if (this.innerHTML == correctAnswer) {
-                        score++;
-                        document.getElementById("scorevalue").innerHTML = score;
-                        hide("wrongBox");
-                        show("correctBox");
-                        setTimeout(function () {
-                            hide("correctBox");
-                        }, 1000);
-                        generateQA();
-                    } else {
-                        hide("correctBox");
-                        show("wrongBox");
-                        setTimeout(function () {
-                            hide("wrongBox");
-                        }, 1000);
-                    }
-                }
+
+            shuffleArray(answerChoices);
+            return answerChoices;
+        }
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function showComment(text, isCorrect) {
+            commentContainer.textContent = text;
+            if (isCorrect) {
+                commentContainer.style.color = "green";
+            } else {
+                commentContainer.style.color = "red";
+            }
+            setTimeout(() => {
+                commentContainer.textContent = "";
+            }, 5000);
+        }
+
+
+        function nextQuestion() {
+            if (totalQuestions >= 10) {
+                displayResults();
+            } else {
+                questionFrozen = false;
+                generateQuestion();
+                clearComments();
+            }
+        }
+
+        function clearComments() {
+            commentContainer.textContent = "";
+        }
+        function displayResults() {
+            answerChoicesElement.innerHTML = "";
+            resultElement.textContent = "";
+
+            for (let i = 0; i < playerAnswers.length; i++) {
+                const answerEntry = document.createElement("p");
+                answerEntry.textContent = `Q: ${playerAnswers[i].question} - A: ${playerAnswers[i].answer}`;
+                answerChoicesElement.appendChild(answerEntry);
+            }
+        }
+
+        function initializeGame() {
+            totalQuestions = 0;
+            correctAnswers = 0;
+            playerAnswers = [];
+            startCountdown();
+        }
+        function checkAnswer(selectedAnswer, correctAnswer) {
+            if (questionFrozen) {
+                return;
+            }
+            totalQuestions++;
+            if (selectedAnswer === correctAnswer) {
+                correctAnswers++;
+                showComment("Correct!", true);
+                nextQuestion();
+            } else {
+                showComment("Wrong!", false);
+                generateQuestion()
+                playerAnswers.push({ question: questionElement.textContent, answer: selectedAnswer });
+            }
+
+        }
+
+        function startGame() {
+            if (!gameInProgress) {
+                startButton.textContent = "Reset Game";
+                gameInProgress = true;
+                remainingTime = 60;
+                updateTimerDisplay();
+                const restartText = document.getElementById("restart-text");
+                restartText.style.display = "inline";
+                startButton.disabled = true;
+                const countdownContainer = document.querySelector(".countdown-container");
+                countdownContainer.style.display = "block";
+                initializeGame();
             }
         }
 
         function startCountdown() {
-            action = setInterval(function () {
-                timeremaining -= 1;
-                document.getElementById("timeremainingvalue").innerHTML = timeremaining;
-                if (timeremaining == 0) {
-                    stopCountdown();
-                    show("gameOverBox");
-                    document.getElementById("gameOverBox").innerHTML =
-                        "<p>Game over!</p><p>Your score is " + score + ".</p>";
-                    hide("timeremainingBox");
-                    hide("correctBox");
-                    hide("wrongBox");
-                    playing = false;
-                    document.getElementById("startresetBox").innerHTML = "Start Game";
+            timerInterval = setInterval(() => {
+                remainingTime--;
+                if (remainingTime <= -1) {
+                    endGame();
+                } else {
+                    updateTimerDisplay();
                 }
             }, 1000);
         }
 
+        function updateTimerDisplay() {
+    if (remainingTime <= -1) {
+        countDown.textContent = " ";
+        endGame();
+        startButton.textContent = "Start Game";
+        startButton.disabled = false;
+        const countdownContainer = document.querySelector(".countdown-container");
+        countdownContainer.style.display = "none"; 
+    } else {
+        countDown.textContent = `Time remaining: ${remainingTime} sec`;
+    }
+}
 
-        function stopCountdown() {
-            clearInterval(action);
+        generateQuestion();
+
+        function endGame() {
+            gameInProgress = false;
+            clearInterval(timerInterval);
+            updateTimerDisplay();
+            startButton.textContent = "Start Game";
+            const restartText = document.getElementById("restart-text");
+            countDown.style.display = "none";
+            questionElement.textContent = "";
+            answerChoicesElement.innerHTML = "";
         }
-        function hide(Id) {
-            document.getElementById(Id).style.display = "none";
-        }
-        function show(Id) {
-            document.getElementById(Id).style.display = "block";
-        }
-        function generateQA() {
-            var x = 1 + Math.round(9 * Math.random());
-            var y = 1 + Math.round(9 * Math.random());
-            correctAnswer = x * y;
-            document.getElementById("questionBox").innerHTML = x +
-                " x " + y;
-            var correctPosition = 1 + Math.round(3 * Math.random());
-            document.getElementById("box" + correctPosition).innerHTML =
-                correctAnswer; 
-            var answers = [correctAnswer];
-            for (i = 1; i < 5; i++) {
-                if (i != correctPosition) {
-                    var wrongAnswer;
-                    do {
-                        wrongAnswer = (1 +
-                            Math.round(9 * Math.random())) * (1 +
-                                Math.round(9 * Math.random())); 
-                    } while (answers.indexOf(wrongAnswer) > -1)
-                    document.getElementById("box" + i).innerHTML =
-                        wrongAnswer;
-                    answers.push(wrongAnswer);
-                }
-            }
-        }
+        const startButton = document.getElementById("start-button");
+        const countDown = document.getElementById("countdown");
+
+        startButton.addEventListener("click", startGame);
     </script>
 </body>
 
-</html>
+
 

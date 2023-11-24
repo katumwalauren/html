@@ -1,0 +1,152 @@
+example on how to calculate this;
+1a)when we click the '1' button:
+add the string '1' to the calculation variable: calculation + = '1';
+display the calculation in the console: console.log(calculation);
+
+1b)do the same for the '2','3' and '+' button (add '+' instead of '+')
+1c)when we click the '=' button, use the code: (eval(calculation)eval(...) converts the calculation
+string into actual math)
+.save the result back back in 'calculation': calculation = eval(calculation)
+.display the result in the console: console.log(calculation)
+
+1d) create the rest of the button in the calculator. to create multiple rows of buttons, put the 
+buttons inside <p> </p> elements like this
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Calculator</title>
+    <style>
+        .calculator {
+            width: 300px;
+            margin: 0 auto;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="text"], input[type="button"] {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            font-size: 20px;
+        }
+        .input{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input class="input" type="text" id="display" disabled>
+        <br>
+        <input type="button" value="1" onclick="addToDisplay('1')">
+        <input type="button" value="2" onclick="addToDisplay('2')">
+        <input type="button" value="3" onclick="addToDisplay('3')">
+        <input type="button" value="+" onclick="addToDisplay('+')">
+        <br>
+        <input type="button" value="4" onclick="addToDisplay('4')">
+        <input type="button" value="5" onclick="addToDisplay('5')">
+        <input type="button" value="6" onclick="addToDisplay('6')">
+        <input type="button" value="-" onclick="addToDisplay('-')">
+        <br>
+        <input type="button" value="7" onclick="addToDisplay('7')">
+        <input type="button" value="8" onclick="addToDisplay('8')">
+        <input type="button" value="9" onclick="addToDisplay('9')">
+        <input type="button" value="*" onclick="addToDisplay('*')">
+        <br>
+        <input type="button" value="C" onclick="clearDisplay()">
+        <input type="button" value="0" onclick="addToDisplay('0')">
+        <input type="button" value="=" onclick="calculate()">
+        <input type="button" value="/" onclick="addToDisplay('/')">
+    </div>
+
+    <script>
+        function addToDisplay(value) {
+            document.getElementById('display').value += value;
+        }
+
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+
+        function calculate() {
+            var display = document.getElementById('display').value;
+            try {
+                var result = eval(display);
+                document.getElementById('display').value = result;
+            } catch (error) {
+                document.getElementById('display').value = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <style>
+        button {
+            width: 50px;
+            height: 50px;
+            font-size: 18px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="calculator">
+    <p>
+        <button onclick="appendToCalculation('1')">1</button>
+        <button onclick="appendToCalculation('2')">2</button>
+        <button onclick="appendToCalculation('3')">3</button>
+        <button onclick="appendToCalculation('+')">+</button>
+    </p>
+    <p>
+        <button onclick="appendToCalculation('4')">4</button>
+        <button onclick="appendToCalculation('5')">5</button>
+        <button onclick="appendToCalculation('6')">6</button>
+        <button onclick="appendToCalculation('-')">-</button>
+    </p>
+    <p>
+        <button onclick="appendToCalculation('7')">7</button>
+        <button onclick="appendToCalculation('8')">8</button>
+        <button onclick="appendToCalculation('9')">9</button>
+        <button onclick="appendToCalculation('*')">*</button>
+    </p>
+    <p>
+        <button onclick="appendToCalculation('0')">0</button>
+        <button onclick="calculateResult()">=</button>
+        <button onclick="clearCalculation()">C</button>
+        <button onclick="appendToCalculation('/')">/</button>
+    </p>
+</div>
+
+<script>
+    let calculation = '';
+
+    function appendToCalculation(value) {
+        calculation += value;
+        console.log(calculation);
+    }
+
+    function calculateResult() {
+        try {
+            calculation = eval(calculation);
+            console.log(calculation);
+        } catch (error) {
+            console.error('Error in calculation:', error);
+        }
+    }
+
+    function clearCalculation() {
+        calculation = '';
+        console.log('Calculation cleared');
+    }
+</script>
+
+</body>
+</html>

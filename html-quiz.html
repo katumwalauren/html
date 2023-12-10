@@ -438,6 +438,23 @@
             }
 
         }
+
+        .question-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .timer-container {
+            background-color: lightblue;
+            position: absolute;
+            top: 200px;
+            width: 230px;
+            height: 50px;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            display: block;
+        }
     </style>
 </head>
 
@@ -450,13 +467,16 @@
                 <p>What does CSS stand for?</p>
             </div>
             <form>
+                <div class="question-container">
+                    <div class="timer-container">
+                        Time remaining : <span class="timer" id="timer-1"></span> Sec
+                    </div>
+                </div>
                 <div class="quiz-options">
-                    <input type="radio" class="input-radio one-a firstInput" id="one-a" name="yes-1"
-                        required>
+                    <input type="radio" class="input-radio one-a firstInput" id="one-a" name="yes-1" required>
                     <label class="radio-label firstLabelEl" for="one-a">
                         <span class="alphabet">A</span> Cascading Style Sheets <img class="icon secondGuess"
-                            src="https://res.cloudinary.com/dvhndpbun/image/upload/v1588518387/secondGuess.svg"
-                            alt="">
+                            src="https://res.cloudinary.com/dvhndpbun/image/upload/v1588518387/secondGuess.svg" alt="">
                     </label>
                     <input type="radio" class="input-radio one-b secondInput" id="one-b" name="yes-1">
                     <label class="radio-label secondLabelEl" for="one-b">
@@ -468,8 +488,8 @@
                         <span class="alphabet">C</span> Cascading Style Screen <img class="icon FirstGuess"
                             src="https://res.cloudinary.com/dvhndpbun/image/upload/v1588517753/firstGuess.svg">
                     </label>
+                    <a id="btn" type="submit" onclick="window.location.href='#section-2'">Next</a>
                 </div>
-                <a id="btn" type="submit" onclick="window.location.href='#section-2'">Next</a>
             </form>
         </main>
     </section>
@@ -480,28 +500,30 @@
                 <p>QUESTION 2 OF 5</p>
                 <p>To specify the transparency of an element, you can use?</p>
             </div>
-            <form>
-                <div class="quiz-options">
-                    <input type="radio" class="input-radio two-a secondInput" id="two-a" name="no-2"
-                        required="">
-                    <label class="radio-label secondLabelEl" for="two-a">
-                        <span class="alphabet">A</span> trans-parency <img class="icon "
-                            src="https://res.cloudinary.com/dvhndpbun/image/upload/v1588517753/firstGuess.svg">
-                    </label>
-                    <input type="radio" class="input-radio two-b secondInput" id="two-b" name="no-2"
-                        required="">
-                    <label class="radio-label secondLabelEl" for="two-b">
-                        <span class="alphabet">B</span> color: 0; <img class="icon firstGuess"
-                            src="https://res.cloudinary.com/dvhndpbun/image/upload/v1588517753/firstGuess.svg">
-                    </label>
-                    <input type="radio" class="input-radio two-c firstInput" id="two-c" name="no-2"
-                        required="">
-                    <label class="radio-label firstLabelEl" for="two-c">
-                        <span class="alphabet">C</span> opacity <img class="icon secondGuess"
-                            src="https://res.cloudinary.com/dvhndpbun/image/upload/v1588518387/secondGuess.svg">
-                    </label>
+            <div class="question-container">
+                <div id="timer-container">
+                    Time remaining : <span class="timer" id="timer-2"></span> Sec
                 </div>
+            </div>
+            <div class="quiz-options">
+                <input type="radio" class="input-radio two-a secondInput" id="two-a" name="no-2" required="">
+                <label class="radio-label secondLabelEl" for="two-a">
+                    <span class="alphabet">A</span> trans-parency <img class="icon "
+                        src="https://res.cloudinary.com/dvhndpbun/image/upload/v1588517753/firstGuess.svg">
+                </label>
+                <input type="radio" class="input-radio two-b secondInput" id="two-b" name="no-2" required="">
+                <label class="radio-label secondLabelEl" for="two-b">
+                    <span class="alphabet">B</span> color: 0; <img class="icon firstGuess"
+                        src="https://res.cloudinary.com/dvhndpbun/image/upload/v1588517753/firstGuess.svg">
+                </label>
+                <input type="radio" class="input-radio two-c firstInput" id="two-c" name="no-2" required="">
+                <label class="radio-label firstLabelEl" for="two-c">
+                    <span class="alphabet">C</span> opacity <img class="icon secondGuess"
+                        src="https://res.cloudinary.com/dvhndpbun/image/upload/v1588518387/secondGuess.svg">
+                </label>
+
                 <a id="btn" type="submit" onclick="window.location.href='#section-3'">Next</a>
+            </div>
             </form>
         </main>
     </section>
@@ -513,27 +535,29 @@
                 <p>which of these is not a category of CSS selectors?</p>
             </div>
             <form>
+                <div class="question-container">
+                    <div id="timer-container">
+                        Time remaining : <span class="timer" id="timer-3"></span> Sec
+                    </div>
+                </div>
                 <div class="quiz-options">
-                    <input type="radio" class="input-radio three-a secondInput" id="three-a"
-                        name="no-3" required="">
+                    <input type="radio" class="input-radio three-a secondInput" id="three-a" name="no-3" required="">
                     <label class="radio-label secondLabelEl" for="three-a">
                         <span class="alphabet">A</span> Pseudo-class selectors <img class="icon FirstGuess"
                             src="https://res.cloudinary.com/dvhndpbun/image/upload/v1588517753/firstGuess.svg">
                     </label>
-                    <input type="radio" class="input-radio three-b secondInput" id="three-b"
-                        name="no-3" required="">
+                    <input type="radio" class="input-radio three-b secondInput" id="three-b" name="no-3" required="">
                     <label class="radio-label secondLabelEl" for="three-b">
                         <span class="alphabet">B</span> Simple selectors <img class="icon firstGuess"
                             src="https://res.cloudinary.com/dvhndpbun/image/upload/v1588517753/firstGuess.svg">
                     </label>
-                    <input type="radio" class="input-radio three-c firstInput" id="three-c"
-                        name="no-3" required="">
+                    <input type="radio" class="input-radio three-c firstInput" id="three-c" name="no-3" required="">
                     <label class="radio-label firstLabelEl" for="three-c">
                         <span class="alphabet">C</span> Layout-selector <img class="icon secondGuess"
                             src="https://res.cloudinary.com/dvhndpbun/image/upload/v1588518387/secondGuess.svg">
                     </label>
+                    <a id="btn" type="submit" onclick="window.location.href='#section-4'">Next</a>
                 </div>
-                <a id="btn" type="submit" onclick="window.location.href='#section-4'">Next</a>
             </form>
         </main>
     </section>
@@ -545,27 +569,29 @@
                 <p>The browser vertical scrollbar can be hidden by using which of the following property?</p>
             </div>
             <form>
+                <div class="question-container">
+                    <div id="timer-container">
+                        Time remaining : <span class="timer" id="timer-4"></span> Sec
+                    </div>
+                </div>
                 <div class="quiz-options">
-                    <input type="radio" class="input-radio four-a secondInput" id="four-a" name="no-4"
-                        required="">
+                    <input type="radio" class="input-radio four-a secondInput" id="four-a" name="no-4" required="">
                     <label class="radio-label secondLabelEl" for="four-a">
                         <span class="alphabet">A</span> scrollbar: disable; <img class="icon firstGuess"
                             src="https://res.cloudinary.com/dvhndpbun/image/upload/v1588517753/firstGuess.svg">
                     </label>
-                    <input type="radio" class="input-radio four-b firstInput" id="four-b" name="no-4"
-                        required="">
+                    <input type="radio" class="input-radio four-b firstInput" id="four-b" name="no-4" required="">
                     <label class="radio-label firstLabelEl" for="four-b">
                         <span class="alphabet">B</span> overflow-y: hidden; <img class="icon secondGuess"
                             src="https://res.cloudinary.com/dvhndpbun/image/upload/v1588518387/secondGuess.svg">
                     </label>
-                    <input type="radio" class="input-radio four-c secondInput" id="four-c" name="no-4"
-                        required="">
+                    <input type="radio" class="input-radio four-c secondInput" id="four-c" name="no-4" required="">
                     <label class="radio-label secondLabelEl" for="four-c">
                         <span class="alphabet">C</span> overflow-x: hidden <img class="icon firstGuess"
                             src="https://res.cloudinary.com/dvhndpbun/image/upload/v1588517753/firstGuess.svg">
                     </label>
+                    <a id="btn" type="submit" onclick="window.location.href='#section-5'">Next</a>
                 </div>
-                <a id="btn" type="submit" onclick="window.location.href='#section-5'">Next</a>
             </form>
         </main>
     </section>
@@ -577,29 +603,29 @@
                 <p>What does HTML stand for?</p>
             </div>
             <form>
+                <div class="question-container">
+                    <div id="timer-container">
+                        Time remaining : <span class="timer" id="timer-5"></span> Sec
+                    </div>
+                </div>
                 <div class="quiz-options">
-                    <input type="radio" class="input-radio five-a firstInput" id="five-a" name="yes-5"
-                        required>
+                    <input type="radio" class="input-radio five-a firstInput" id="five-a" name="yes-5" required>
                     <label class="radio-label firstLabelEl" for="five-a">
                         <span class="alphabet">A</span> Hypertext Markup Language <img class="icon secondGuess"
-                            src="https://res.cloudinary.com/dvhndpbun/image/upload/v1588518387/secondGuess.svg"
-                            alt="">
+                            src="https://res.cloudinary.com/dvhndpbun/image/upload/v1588518387/secondGuess.svg" alt="">
                     </label>
-                    <input type="radio" class="input-radio five-b secondInput" id="five-b"
-                        name="yes-5">
+                    <input type="radio" class="input-radio five-b secondInput" id="five-b" name="yes-5">
                     <label class="radio-label secondLabelEl" for="five-b">
-                        <span class="alphabet">B</span> Hypertext Transform Markup Language <img
-                            class="icon firstGuess"
+                        <span class="alphabet">B</span> Hypertext Transform Markup Language <img class="icon firstGuess"
                             src="https://res.cloudinary.com/dvhndpbun/image/upload/v1588517753/firstGuess.svg">
                     </label>
-                    <input type="radio" class="input-radio five-c secondInput" id="five-c"
-                        name="yes-5">
+                    <input type="radio" class="input-radio five-c secondInput" id="five-c" name="yes-5">
                     <label class="radio-label secondLabelEl" for="five-c">
                         <span class="alphabet">C</span> Hypertext Machine Language <img class="icon firstGuess"
                             src="https://res.cloudinary.com/dvhndpbun/image/upload/v1588517753/firstGuess.svg">
                     </label>
+                    <a id="btn" type="submit" onclick="window.location.href='#game-over'">Next</a>
                 </div>
-                <a id="btn" type="submit" onclick="window.location.href='#game-over'">Next</a>
             </form>
         </main>
     </section>
@@ -633,7 +659,50 @@
             <h2>Refresh/Reload this page to continue</h2>
         </div>
     </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let currentSection = 1;
+            let timerSeconds = 30;
+            let timerInterval;
+
+            function startTimer() {
+                timerInterval = setInterval(function () {
+                    if (timerSeconds > 0) {
+                        timerSeconds--;
+                        document.getElementById(`timer-${currentSection}`).innerText = timerSeconds;
+                    } else {
+                        goToNextQuestion();
+                    }
+                }, 1000);
+            }
+
+            function resetTimer() {
+                clearInterval(timerInterval);
+                timerSeconds = 30;
+                document.getElementById(`timer-${currentSection}`).innerText = timerSeconds;
+            }
+
+            function goToNextQuestion() {
+                resetTimer();
+                currentSection++;
+
+                if (currentSection <= 5) {
+                    window.location.href = `#section-${currentSection}`;
+                    startTimer();
+                } else {
+                    window.location.href = '#game-over';
+                }
+            }
+
+            document.querySelectorAll('#btn').forEach(function (button) {
+                button.addEventListener('click', function () {
+                    goToNextQuestion();
+                });
+            });
+
+            startTimer(2);
+        });
+    </script>
 </body>
 
 </html>
-

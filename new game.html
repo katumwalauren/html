@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Candy Crush</title>
+    <style>
+        #game-board {
+            display: grid;
+            grid-template-columns: repeat(8, 50px);
+            gap: 5px;
+        }
+
+        .candy {
+            width: 50px;
+            height: 50px;
+            background-color: #e44d26;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .selected {
+            border: 2px solid #ffffff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="game-board"></div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const gameBoard = document.getElementById("game-board");
+            let selectedCandy = null;
+
+            // Function to create a candy element
+            function createCandy() {
+                const candy = document.createElement("div");
+                candy.classList.add("candy");
+                candy.addEventListener("click", onCandyClick);
+                return candy;
+            }
+
+            // Function to handle candy click event
+            function onCandyClick() {
+                const clickedCandy = this;
+
+                if (!selectedCandy) {
+                    // First candy selection
+                    selectedCandy = clickedCandy;
+                    selectedCandy.classList.add("selected");
+                } else {
+                    // Second candy selection
+                    // Swap candies
+                    swapCandies(selectedCandy, clickedCandy);
+
+                    // Clear selection
+                    selectedCandy.classList.remove("selected");
+                    selectedCandy = null;
+                }
+            }
+
+            // Function to swap two candies
+            function swapCandies(candy1, candy2) {
+                const temp = document.createElement("div");
+                candy1.parentNode.insertBefore(temp, candy1);
+                candy2.parentNode.insertBefore(candy1, candy2);
+                temp.parentNode.insertBefore(candy2, temp);
+                temp.parentNode.removeChild(temp);
+            }
+
+            // Function to initialize the game board
+            function initializeGameBoard() {
+                for (let i = 0; i < 64; i++) {
+                    const candy = createCandy();
+                    gameBoard.appendChild(candy);
+                }
+            }
+
+            // Initialize the game board
+            initializeGameBoard();
+        });
+    </script>
+</body>
+
+</html>
+how to make my game active

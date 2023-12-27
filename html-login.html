@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 
 <head>
@@ -73,7 +73,119 @@
     </script>
 </body>
 
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Add some basic styling */
+        body {
+            display: flex;
+        }
+
+        .container {
+            width: 40px;
+            height: 40px;
+            background-color: #ccc;
+            margin: 10px;
+            text-align: center;
+            line-height: 50px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .info-container {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            padding: 10px;
+            border: 1px solid #999;
+        }
+
+        .arrow {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            margin-left: -10px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid #fff;
+        }
+
+        /* Added styles to make containers horizontal */
+        .container-group {
+            display: flex;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container-group">
+        <!-- Container 1 -->
+        <div class="container" onmouseover="toggleInfo(1, true, event)" onmouseout="toggleInfo(1, false, event)">1</div>
+        <div id="infoContainer1" class="info-container">
+            <div class="arrow"></div>
+            <p>Wait for it...</p>
+        </div>
+
+        <!-- Container 2 -->
+        <div class="container" onmouseover="toggleInfo(2, true, event)" onmouseout="toggleInfo(2, false, event)">2</div>
+        <div id="infoContainer2" class="info-container">
+            <div class="arrow"></div>
+            <p>Wait for it...</p>
+        </div>
+
+        <!-- Container 3 -->
+        <div class="container" onmouseover="toggleInfo(3, true, event)" onmouseout="toggleInfo(3, false, event)">3</div>
+        <div id="infoContainer3" class="info-container">
+            <div class="arrow"></div>
+            <p>Wait for it...</p>
+        </div>
+
+        <!-- Container 4 -->
+        <div class="container" onmouseover="toggleInfo(4, true, event)" onmouseout="toggleInfo(4, false, event)">4</div>
+        <div id="infoContainer4" class="info-container">
+            <div class="arrow"></div>
+            <p>Wait for it...</p>
+        </div>
+    </div>
+
+    <script>
+        var activeContainer = null;
+
+function toggleInfo(containerNumber, show, event) {
+    var infoContainer = document.getElementById('infoContainer' + containerNumber);
+
+    // Toggle the visibility of the info-container
+    infoContainer.style.display = show ? 'block' : 'none';
+
+    // Hide the previously active container, if any
+    if (activeContainer !== null && activeContainer !== containerNumber && !show) {
+        document.getElementById('infoContainer' + activeContainer).style.display = 'none';
+    }
+
+    // Update the active container
+    activeContainer = show ? containerNumber : null;
+
+    // Position the info-container above the numbered container
+    if (show) {
+        var containerRect = event.target.getBoundingClientRect();
+        var containerCenterX = containerRect.left + containerRect.width / 2;
+        var infoContainerWidth = infoContainer.offsetWidth;
+        infoContainer.style.left = containerCenterX - infoContainerWidth / 2 + 'px';
+        infoContainer.style.top = containerRect.top - infoContainer.offsetHeight + 'px';
+    }
+}
+    </script>
+
+</body>
+
 </html>
-
-
-
+how to make the info-container flexible that that it appears on the numbered-container where the curser is pointing

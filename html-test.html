@@ -17,14 +17,11 @@
             overflow-x: hidden;
         }
 
-        .navbars {
+
+        .fake_navbar {
             position: fixed;
             top: 0;
             display: none;
-        }
-
-        .container-fluid {
-            padding: 0 5% 0 6%;
         }
 
         .nav_padding {
@@ -66,6 +63,7 @@
             width: 40%;
         }
 
+
         #sidebar {
             overflow-x: hidden;
             overflow: hidden;
@@ -106,7 +104,6 @@
             margin-bottom: 2.7vw;
             top: 0;
         }
-
 
         .icofont-search_size {
             font-size: 1.45em;
@@ -156,6 +153,7 @@
             padding: 0;
         }
 
+
         .main_section {
             position: relative;
         }
@@ -190,10 +188,11 @@
         .banner_image {
             position: absolute;
             z-index: -3;
-            left: -54.2%;
+            left: 24.2%;
+            top: -100px;
             -webkit-transform: scale(1) translate(0px, 40px);
             transform: scale(1) translate(0px, 40px);
-            width: 74vw;
+            width: 90vw;
         }
 
         .enroll_form {
@@ -264,12 +263,40 @@
             border-radius: 8px;
         }
 
-        .jumbotron {
-            background-color: #FAF8FF;
-            color: #003254;
-            z-index: 2;
+        .btn-danger.red_button:hover::after,
+        .btn-secondary.dark_button:hover::after {
+            content: attr(data-content);
+            display: block;
+            position: absolute;
+            background-color: whitesmoke;
+            color: black;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 5px;
+            height: 50px;
+            width: 190px;
+            z-index: 0;
+            top: calc(100% + 10px);
+            left: 90%;
+            transform: translateX(-50%)
+        }
+
+        .btn-danger.red_button:hover,
+        .btn-secondary.dark_button:hover {
             position: relative;
-            margin-bottom: 0;
+            z-index: 1;
+        }
+
+        .btn-danger.red_button::before,
+        .btn-secondary.dark_button::before {
+            content: '';
+            position: absolute;
+            border-width: 8px;
+            border-style: solid;
+            border-color: transparent transparent whitesmoke transparent;
+            top: 17px;
+            left: 30%;
+            transform: translateX(-50%);
         }
 
         .lead {
@@ -280,6 +307,7 @@
             box-shadow: 1px 4px 9px 4px rgba(0, 0, 0, 0.41);
         }
 
+
         footer {
             color: #ffffff;
             background-color: #030303;
@@ -288,10 +316,11 @@
             overflow: hidden;
             position: relative;
             z-index: 1;
+            text-align: center;
         }
 
 
-        @media (max-width:1057px) {
+        @media (max-width:2057px) {
             #sidebar {
                 display: none;
             }
@@ -304,6 +333,7 @@
                 padding: 25px 16px 15px;
             }
         }
+
 
         @media (max-width:991px) {
             .nav-item {
@@ -352,8 +382,6 @@
         }
 
         @media (max-width:575px) {
-
-
             .brand_logo {
                 padding-top: 5%;
                 width: 110px;
@@ -384,9 +412,10 @@
                 background-image: url("https://res.cloudinary.com/dvhndpbun/image/upload/v1579805586/bike_background_azmev6.jpg");
                 background-size: cover;
                 padding-top: 2vh;
-                padding-bottom: 35vh;
+                padding-bottom: 120vh;
                 border-radius: 0 0 30px 30px;
                 box-shadow: -1px 11px 14px -15px rgba(219, 212, 219, 0.75);
+                margin-top: 300px;
             }
 
             .title_container {
@@ -447,10 +476,12 @@
             }
 
             .youtube_iframe {
-                -webkit-box-flex: 0;
-                flex: 0 0 100%;
+                -webkit-transform: scale(1) translate(700px, -780px);
+                flex: 100px;
                 max-width: 100%;
+                max-height: 500px;
                 margin-left: 0;
+                margin-top: 10px;
             }
 
             footer {
@@ -460,6 +491,18 @@
             footer p {
                 font-size: .9rem;
             }
+        }
+
+        .jumbotron {
+            background-color: #FAF8FF;
+            color: #003254;
+            z-index: 2;
+            position: relative;
+            margin-bottom: 0;
+            width: 100%;
+            height: 700px;
+            max-width: none;
+            text-align: center;
         }
 
         @media (min-width:575px) {
@@ -527,7 +570,7 @@
 <body>
     <header id="header">
 
-        <div class="navbars">
+        <div class="fake_navbar">
         </div>
 
         <div class="container-fluid">
@@ -562,7 +605,6 @@
                 </div>
             </div>
         </div>
-
 
         <nav id="sidebar" class="navbar navbar-expand-md navbar-dark sidebar_background_color fixed-right text-center">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
@@ -605,23 +647,23 @@
     <main class="main_section">
 
         <div class="mob_image_container">
+            <div class="col-lg-6 col-md-5 col-sm-5 col-12 ">
+                <img class="banner_image "
+                    src="https://res.cloudinary.com/dvhndpbun/image/upload/v1579805586/bike_background_azmev6.jpg"
+                    alt="bicycle image">
+            </div>
         </div>
-
         <div class="container title_container">
             <div class="row">
                 <div class="col-lg-6 col-md-7 col-sm-7 col-12">
                     <span class="call2action">
                         <h1 class="large_title">Bicycle <span class="red_title">Re</span>pair</h1>
+
                         <p class="page_copy text-justify">We don't just want you to love riding your bike, we want you
                             to love working on your bike too. We are here to help you. </p>
                     </span>
                 </div>
 
-                <div class="col-lg-6 col-md-5 col-sm-5 col-12 ">
-                    <img class="banner_image "
-                        src="https://res.cloudinary.com/dvhndpbun/image/upload/v1579805586/bike_background_azmev6.jpg"
-                        alt="bicycle image">
-                </div>
             </div>
         </div>
 
@@ -638,17 +680,25 @@
                                 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required="">
                         </div>
                     </form>
-
-
                     <div class="btn-toolbar" role="group" aria-label="First group">
-                        <button type="button" class="btn btn-danger red_button mr-2" data-container="body"
-                            data-toggle="popover" data-trigger="focus" data-placement="bottom"
-                            data-content="The buttons on this line do not really have any function for now, but will surely do in future.">1</button>
-                        <button type="button" class="btn btn-secondary dark_button mx-2" data-container="body"
-                            data-toggle="popover" data-trigger="focus" data-placement="bottom"
-                            data-content="The buttons on this line do not really have any function for now, but will surely do in future.">2</button>
-                        <button type="button" class="btn btn-secondary dark_button mx-2">3</button>
-                        <button type="button" class="btn btn-secondary dark_button mx-2">4</button>
+                        <button type="button" class="btn btn-danger red_button mr-2" data-toggle="popover"
+                            data-trigger="focus" data-placement="bottom"
+                            data-content="The buttons on this line do not really have any function for now, but will surely do in future.">
+                            1<div class="arrow"></div>
+                        </button>
+                        <button type="button" class="btn btn-secondary dark_button mx-2" data-toggle="popover"
+                            data-trigger="focus" data-placement="bottom"
+                            data-content="The buttons on this line do not really have any function for now, but will surely do in future.">
+                            2 <div class="arrow"></div>
+                        </button>
+                        <button type="button" class="btn btn-secondary dark_button mx-2" data-toggle="popover"
+                            data-trigger="focus" data-placement="bottom" data-content="Content for button 3">
+                            3 <span class="arrow"></span>
+                        </button>
+                        <button type="button" class="btn btn-secondary dark_button mx-2" data-toggle="popover"
+                            data-trigger="focus" data-placement="bottom" data-content="Content for button 4">
+                            4 <span class="arrow"></span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -656,24 +706,25 @@
         </div>
 
     </main>
-
     <div id="jumbotron" class="jumbotron text-center">
-        <h1 class="display-4"><i class="icofont-bicycle"></i>Get the Best Service!<i class="icofont-bicycle"></i></h1>
-        <p class="lead">We strive and make sure we deliver the best and professional bike services and repairs, leaving
-            our customers happy with us and their bikes... </p>
-        <hr class="my-4">
+        <div class="d-flex justify-content-center">
+            <h1 class="display-4"><i class="icofont-bicycle"></i>Get the Best Service!<i class="icofont-bicycle"></i>
+            </h1>
+            <p class="lead">We strive and make sure we deliver the best and professional bike services and repairs,
+                leaving
+                our customers happy with us and their bikes... </p>
+            <hr class="my-4">
 
-
-        <div class="row">
-            <div class="col-8 offset-2 youtube_iframe">
-                <div class="embed-responsive iframe_margin embed-responsive-16by9 iframe_shadow">
-                    <iframe id="video" class="embed-responsive-item" src="https://www.youtube.com/embed/fYaeVDnSK2c"
-                        allowfullscreen></iframe>
+            <div class="row">
+                <div class="col-8 offset-2 youtube_iframe">
+                    <div class="embed-responsive iframe_margin embed-responsive-16by9 iframe_shadow">
+                        <iframe width="600" height="415" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0"
+                            allowfullscreen></iframe>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
 
     <footer id="footer">
         <div class="container-fluid text-center mt-3">
@@ -700,3 +751,4 @@
 </body>
 
 </html>
+

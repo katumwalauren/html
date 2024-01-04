@@ -11,13 +11,33 @@
             scroll-behavior: smooth;
         }
 
-
         body {
             background-color: #080808fa;
             font-family: 'Montserrat Alternates', sans-serif;
             overflow-x: hidden;
         }
 
+        .center-logo-toggle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .center-logo-toggle .brand_logo {
+            width: 200px;
+        }
+
+
+        .navbar:not(.rect_background) {
+            padding: 0;
+        }
+
+        .brand_logo {
+            width: 190px;
+            margin: 0 auto;
+            display: block;
+        }
 
         .fake_navbar {
             position: fixed;
@@ -34,7 +54,7 @@
         }
 
         .nav_text {
-            color: #ffffff;
+            color: red;
         }
 
         .nav_text:hover {
@@ -55,13 +75,15 @@
             height: 2px;
             width: 0;
             background-color: #c52726;
-            margin: 2px 35% 0;
+            margin: 2px 35% ;
             -webkit-transition: ease-in-out 300ms;
             transition: ease-in-out 300ms;
         }
 
         nav .hover_state:hover::after {
-            width: 40%;
+            width: 200px;
+            margin: 20px;
+            margin-left: -3px;
         }
 
 
@@ -578,7 +600,7 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                     <nav id="nav-bar" class="navbar navbar-expand-sm navbar-dark">
-                        <a href="https://codepen.io/enouwem-jim/full/zYxQGGe"><img id="header-img" class="brand_logo"
+                        <a href="https://codepen.io/katumwa-lauren/full/zYxQGGe"><img id="header-img" class="brand_logo"
                                 src="https://res.cloudinary.com/dvhndpbun/image/upload/e_bgremoval/v1579618788/landing_logo_upscaled_illustration_x4_ysyou1.png"
                                 alt="brand logo"></a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -752,3 +774,4 @@
 </body>
 
 </html>
+

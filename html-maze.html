@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Maze Game</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #maze {
+            display: grid;
+            grid-template-columns: repeat(10, 50px);
+            grid-template-rows: repeat(10, 50px);
+            gap: 1px;
+            background-color: #000;
+        }
+
+        #maze div {
+            width: 50px;
+            height: 50px;
+            background-color: #fff;
+        }
+
+        .wall {
+            background-color: #000;
+        }
+
+        #player {
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="maze"></div>
+    <div id="player"></div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const mazeElement = document.getElementById("maze");
+            const playerElement = document.getElementById("player");
+
+            const maze = generateRandomMaze(10, 10, 0.3);
+
+            function generateRandomMaze(rows, columns, obstacleProbability) {
+                const maze = [];
+                for (let i = 0; i < rows; i++) {
+                    maze[i] = [];
+                    for (let j = 0; j < columns; j++) {
+                        maze[i][j] = Math.random() < obstacleProbability ? 1 : 0;
+                    }
+                }
+                return maze;
+            }
+
+            function buildMaze() {
+                mazeElement.innerHTML = "";
+                for (let i = 0; i < maze.length; i++) {
+                    for (let j = 0; j < maze[i].length; j++) {
+                        const cell = document.createElement("div");
+                        cell.className = maze[i][j] === 1 ? "wall" : "path";
+                        mazeElement.appendChild(cell);
+                    }
+                }
+            }
+
+            function movePlayer(direction) {
+                const currentPosition = getPlayerPosition();
+                let newX = currentPosition.x;
+                let newY = currentPosition.y;
+
+                if (
+                    direction === "up" &&
+                    newY > 0 &&
+                    maze[newY - 1][newX] === 0
+                ) {
+                    newY--;
+                } else if (
+                    direction === "down" &&
+                    newY < maze.length - 1 &&
+                    maze[newY + 1][newX] === 0
+                ) {
+                    newY++;
+                } else if (
+                    direction === "left" &&
+                    newX > 0 &&
+                    maze[newY][newX - 1] === 0
+                ) {
+                    newX--;
+                } else if (
+                    direction === "right" &&
+                    newX < maze[0].length - 1 &&
+                    maze[newY][newX + 1] === 0
+                ) {
+                    newX++;
+                }
+
+                playerElement.style.left = newX * 50 + "px";
+                playerElement.style.top = newY * 50 + "px";
+
+                if (newX === maze[0].length - 1 && newY === maze.length - 1) {
+                    alert("Congratulations! You reached the goal!");
+                }
+            }
+
+            function getPlayerPosition() {
+                const x = parseInt(playerElement.style.left) / 50;
+                const y = parseInt(playerElement.style.top) / 50;
+                return { x, y };
+            }
+
+            document.addEventListener("keydown", function (event) {
+                switch (event.key) {
+                    case "ArrowUp":
+                        movePlayer("up");
+                        break;
+                    case "ArrowDown":
+                        movePlayer("down");
+                        break;
+                    case "ArrowLeft":
+                        movePlayer("left");
+                        break;
+                    case "ArrowRight":
+                        movePlayer("right");
+                        break;
+                }
+            });
+
+            buildMaze();
+        });
+    </script>
+</body>
+</html>

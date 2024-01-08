@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            font-size: 1.1em;
+            margin: 20px auto;
+            width: 90%;
+        }
+
+        nav ul,
+        footer ul {
+            padding: 0px;
+            list-style: none;
+        }
+
+        nav ul li,
+        footer ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #999;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            font-size: 3em;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        nav {
+            font-family: 'Roboto', sans-serif;
+            font-weight: normal;
+        }
+
+        p {
+            line-height: 1.4em;
+            color: #333;
+        }
+
+        footer {
+            border-top: 1px solid #e5e5e5;
+            font-size: .8em;
+        }
+
+        ul.posts {
+            margin: 20px auto 40px;
+        }
+
+        ul.posts li {
+            list-style: none;
+        }
+
+        .subtitle {
+            font-size: .5em;
+        }
+
+        .portrait {
+            display: block;
+            margin: 0 auto;
+            border-radius: 100%;
+            max-width: 200px;
+        }
+
+        .text {
+            display: block;
+            width: 100%;
+        }
+
+        .blog-latest {
+            clear: left;
+            display: block;
+        }
+
+        .meta {
+            margin-top: -1.4em;
+            padding-bottom: 1.4em;
+            font-size: 80%;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+
+        @media (min-width: 750px) {
+            body {
+                font-size: 1.3em;
+            }
+        }
+
+        @media (min-width: 600px) {
+
+            body {
+                margin: 60px auto;
+                width: 70%;
+            }
+
+            .nowrap {
+                white-space: nowrap;
+            }
+
+            #about {
+                margin: 0 auto;
+                max-width: 800px;
+            }
+
+            .portrait {
+                display: inline-block;
+                vertical-align: middle;
+                border-radius: 100%;
+                width: 46%;
+                margin-right: 2%;
+                max-width: 400px;
+            }
+
+            .text {
+                display: inline-block;
+                vertical-align: middle;
+                width: 46%;
+                margin-left: 2%;
+            }
+
+            .box {
+                float: left;
+                width: 31%;
+                margin: 1%;
+            }
+        }
+
+
+        blockquote {
+            padding: .5rem 1rem;
+            margin: .8rem 0;
+            color: #7a7a7a;
+            border-left: .25rem solid #e5e5e5;
+        }
+
+        @media (min-width: 30em) {
+            blockquote {
+                padding-right: 5rem;
+                padding-left: 1.25rem;
+            }
+        }
+
+
+        table {
+            margin-bottom: 1rem;
+            border: 1px solid #e5e5e5;
+            border-collapse: collapse;
+            overflow: auto;
+        }
+
+        td,
+        th {
+            padding: .25em 1em;
+            border: 1px solid #e5e5e5;
+        }
+
+        tbody tr:nth-child(odd) td,
+        tbody tr:nth-child(odd) th {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/#projects">Projects</a></li>
+            <li><a href="/blog">Blog</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+
+        <div id="title">
+            <h1>
+                <span class="subtitle">Online portfolio of</span><br>
+                <span class="nowrap">David Aaron Pierce</span>
+            </h1>
+        </div>
+
+        <div id="about">
+            <img class="portrait" src="/assets/img/me.jpg" alt="It's me, David">
+            <div class="text">
+                <h2>
+                    Hello!
+                </h2>
+                <p>
+                    I'm a student at Seattle U studying Computer Science, living in Seattle with my talented wife <a
+                        href="https://tishaturner.com">Tisha</a>. I design and develop simple games on my free time. On
+                    occaisons I also draw, paint and animate. Take a look at my work, and check out my links to connect
+                    with me further.
+                </p>
+            </div>
+        </div>
+
+        <div id="projects">
+            <h2>
+                Projects
+            </h2>
+
+            <div class='box'>
+                <h3>
+                    <a href="https://dapierce.github.io/my-freecodecamp/WeatherApp">Windowless Weather</a>
+                </h3>
+                <p>Simple weather web app that polls your local time and location and gives a pleasant display of the
+                    current weather with time-of-day specific colors.</p>
+            </div>
+
+            <div class='box'>
+                <h3>
+                    <a href="https://davidaaronpierce.com/miniwallism">Miniwallism</a>
+                </h3>
+                <p>A minimalistic dodging game, originally made for Ludum Dare 26. Armed with only the right and left
+                    arrow keys you must dodge, combine with and hit larger walls. It ramps up quickly so you’d better
+                    have fast fingers to keep up.</p>
+            </div>
+
+            <div class='box'>
+                <h3>
+                    <a href="https://davidaaronpierce.com/buildingmars">Building Mars</a>
+                </h3>
+                <p>A turn-based game about building a sustainable colony on Mars, created for NASA’s Dark Side of the
+                    Jam, a 48 hour game jam. It boils down to resource management, and determining the best place to
+                    build things. This version is just an initial building phase.</p>
+            </div>
+
+            <div class='box'>
+                <h3>
+                    <a href="https://dapierce.github.io/my-freecodecamp/WikipediaViewer">Wikipedia Viewer</a>
+                </h3>
+                <p>Simple page that searches Wikipedia by their API and displays the results in a cleanly styled list.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="blog-latest">
+            <h2>Latest Blog Post</h2>
+
+            <a href="/blog/2016/12/28/battle-of-the-note-takers">
+                <div class="blog-entry">
+                    <h3>Battle of the note-takers</h3>
+                    <p class="post-date">December 28, 2016</p>
+                    <p class="post-excerpt">I use a lot of different programs to take notes, hoping they will serve my
+                        needs. And ultimately, every one I’ve tried serves up a perfectly functional text editor/thought
+                        space/echo chamber. But I have a sickness, and after using any program for a couple months, its
+                        small, nagging problems get more and more visible to me. These are never big deals. I shouldn’t
+                        be so unnerved by the problems.
+
+                    </p>
+                    <p>read more...</p>
+                </div>
+            </a>
+
+        </div>
+
+
+    </div>
+
+    <footer>
+        <ul>
+            <li><a href="mailto:davidaaronpierce@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i> email</a>
+            </li>
+
+            <li><a href="https://www.linkedin.com/in/piercedavid/"><i class="fa fa-linkedin-square"
+                        aria-hidden="true"></i> LinkedIn</li>
+            <li><a href="https://github.com/dapierce"><i class="fa fa-github" aria-hidden="true"></i>
+                    github.com/dapierce</a></li>
+        </ul>
+    </footer>
+</body>
+
+</html>

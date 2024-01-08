@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            font-size: 1.1em;
+            margin: 20px auto;
+            width: 90%;
+        }
+
+        nav ul,
+        footer ul {
+            padding: 0px;
+            list-style: none;
+        }
+
+        nav ul li,
+        footer ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #999;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            font-size: 3em;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        nav {
+            font-family: 'Roboto', sans-serif;
+            font-weight: normal;
+        }
+
+        p {
+            line-height: 1.4em;
+            color: #333;
+        }
+
+        footer {
+            border-top: 1px solid #e5e5e5;
+            font-size: .8em;
+        }
+
+        ul.posts {
+            margin: 20px auto 40px;
+        }
+
+        ul.posts li {
+            list-style: none;
+        }
+
+        .subtitle {
+            font-size: .5em;
+        }
+
+        .portrait {
+            display: block;
+            margin: 0 auto;
+            border-radius: 100%;
+            max-width: 200px;
+        }
+
+        .text {
+            display: block;
+            width: 100%;
+        }
+
+        .blog-latest {
+            clear: left;
+            display: block;
+        }
+
+        .meta {
+            margin-top: -1.4em;
+            padding-bottom: 1.4em;
+            font-size: 80%;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+
+        @media (min-width: 750px) {
+            body {
+                font-size: 1.3em;
+            }
+        }
+
+        @media (min-width: 600px) {
+
+            body {
+                margin: 60px auto;
+                width: 70%;
+            }
+
+            .nowrap {
+                white-space: nowrap;
+            }
+
+            #about {
+                margin: 0 auto;
+                max-width: 800px;
+            }
+
+            .portrait {
+                display: inline-block;
+                vertical-align: middle;
+                border-radius: 100%;
+                width: 46%;
+                margin-right: 2%;
+                max-width: 400px;
+            }
+
+            .text {
+                display: inline-block;
+                vertical-align: middle;
+                width: 46%;
+                margin-left: 2%;
+            }
+
+            .box {
+                float: left;
+                width: 31%;
+                margin: 1%;
+            }
+        }
+
+
+        blockquote {
+            padding: .5rem 1rem;
+            margin: .8rem 0;
+            color: #7a7a7a;
+            border-left: .25rem solid #e5e5e5;
+        }
+
+        @media (min-width: 30em) {
+            blockquote {
+                padding-right: 5rem;
+                padding-left: 1.25rem;
+            }
+        }
+
+
+        table {
+            margin-bottom: 1rem;
+            border: 1px solid #e5e5e5;
+            border-collapse: collapse;
+            overflow: auto;
+        }
+
+        td,
+        th {
+            padding: .25em 1em;
+            border: 1px solid #e5e5e5;
+        }
+
+        tbody tr:nth-child(odd) td,
+        tbody tr:nth-child(odd) th {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a
+                    href="https://github.com/katumwalauren/html/commit/895f6c57951ac733a1cb2b7d25d5da078f96c333#diff-cf56f919ce82d9df76adf506eec374026f807b0b65109667ff35f4b1148f5c04">Projects</a>
+            </li>
+            <li><a href="/blog">Blog</a></li>
+        </ul>
+    </nav>
+
+
+    <div class="container">
+
+        <div id="title">
+            <h1>
+                <span class="subtitle">Online portfolio of</span><br>
+                <span class="nowrap">Carol Katumwa Lauren</span>
+            </h1>
+        </div>
+
+        <div id="about">
+            <img class="portrait" src="/assets/img/me.jpg" alt="It's me, Lauren">
+            <div class="text">
+                <h2>
+                    Hello!
+                </h2>
+                <p>
+                    I'm a student studying Computer Science, living in Uganda. I design different projects like login
+                    pages,loading pages,games etc.Take a look at my work, and check out my links to connect with me further.
+                </p>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div id="projects">
+        <h2>
+            Projects
+        </h2>
+
+        <div class='box'>
+            <h3> 
+                <a
+                    href="https://github.com/katumwalauren/html-math-game.html" target="_blank">The
+                    math game</a>
+            </h3>
+            <p> this is my math game.</p>
+        </div>
+
+
+
+    </div>
+</body>
+
+</html>
+why isn't my code running directely to the game when one clicks on it's link  when in the page "https://github.com/katumwalauren/html-math-game.html"

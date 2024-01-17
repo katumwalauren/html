@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>scrollable pagination</title>
+
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+        :root {
+            --dark: #00121B;
+            --light: #98fbd307;
+            --text-light: #ffffff;
+            --text-dark: #000000;
+            --accent: #4CAF50;
+            --background-secondary: #80FF80;
+            --background-complementary: #7FFFD4;
+            --font: 'Cairo', sans-serif;
+            --button-width: 4rem;
+        }
+
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            min-height: 200px;
+            padding: 0;
+            overflow: hidden;
+            font-family: var(--font);
+            background-color: #00121B
+        }
+
+
+        .table-container {
+            @include r-flex;
+
+            mini-width: 20vw;
+            height: 350px;
+            transform-style: preserve-3d;
+            box-shadow: 0 0 10px #98fbd3a3;
+            border: 2px solid #98fbd380;
+            border-radius: 1rem;
+            max-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            overflow-y: auto;
+            margin-top: 150px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(127, 255, 212, 0.094);
+        }
+
+        .light-animation {
+            background-image: linear-gradient(45deg, #00121B, #98fbd351, #00121B);
+            background-size: 200% 200%;
+            transform: rotate(360deg);
+            animation: lightRotate 2s infinite linear;
+            transform-origin: center center;
+        }
+
+        @keyframes lightRotate {
+            0% {
+                background-position: 1700% 100%;
+            }
+
+            100% {
+                background-position: 1700% 50%;
+            }
+        }
+
+        .table {
+            @include r-flex;
+
+            width: 100%;
+            height: 190px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+            background: linear-gradient(45deg, #00121B, #98fbd351, #00121B);
+        }
+
+        .table-row {
+            background-color: var(--light);
+            color: var(--text-dark);
+            flex-direction: row;
+            display: flex;
+
+
+        }
+
+        .table-heading {
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            flex-direction: row;
+            display: flex;
+        }
+
+        .table-row,
+        .table-heading {
+            @include r-flex;
+
+            flex-direction: row;
+            gap: 80px;
+            width: calc(100% - 4rem);
+            padding: 0 50px;
+            transition: opacity .5s;
+            height: auto;
+            justify-content: center;
+        }
+
+        .table-row:nth-child(2n) {
+            background-color: rgba(var(--dark), 0.1);
+        }
+
+        .table-col {
+            @include r-flex;
+
+            flex-direction: row;
+            gap: 20px;
+            flex: 1 1 0;
+            margin-left: -40px;
+            height: auto;
+            justify-content: center;
+            text-shadow: 0 0 .5rem;
+            font-size: getFont(12)px;
+            padding: 0 45px;
+            cursor: pointer !important;
+            white-space: nowrap;
+            text-align: center;
+            margin-bottom: 10px;
+            color: var(--background-complementary);
+            font-weight: normal;
+            font-size: 16px;
+            vertical-align: top;
+        }
+
+
+        .table-heading .table-col {
+            color: var(--accent) !important;
+            text-shadow: 0 0 .5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .pagination-container {
+            @include r-flex;
+
+            flex: 1 1 auto;
+            width: 100%;
+            justify-content: flex-end;
+            align-items: center;
+            padding-bottom: 1.5rem;
+            padding-top: 1rem;
+            padding-left: 25rem;
+            flex-direction: row;
+            color: var(--background-complementary);
+        }
+
+        .infos {
+            @include a-flex;
+
+            position: absolute;
+            top: 5%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: var(--font);
+            padding: 20px;
+            width: 80%;
+            justify-content: center;
+            align-items: center;
+            font-size: getFont(12px);
+            line-height: 24px;
+            font-weight: 600;
+            background-color: var(--background-secondary);
+            background-image: linear-gradient(45deg, royalblue, var(--background-secondary), var(--background-complementary));
+            -webkit-background-image: linear-gradient(45deg, var(--background-secondary), royalblue, var(--background-complementary));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 .4rem rgba(var(--background-complementary), .4);
+        }
+    </style>
+
+</head>
+
+<body>
+    <p class="infos">
+        You can switch pages using your mouse wheel !<br />
+        The amount of rows per pages depends on the height of your window when loading the page.
+    </p>
+
+    <div class="table-container light-animation" style="--data-limit: 4">
+        <div class="table" id="table-0" data-limit="9">
+            <div class="table-row table-heading">
+                <div class="table-col">
+                    #
+                </div>
+                <div class="table-col">
+                    First name
+                </div>
+                <div class="table-col">
+                    Last name
+                </div>
+                <div class="table-col">
+                    Title
+                </div>
+                <div class="table-col">
+                    Completed
+                </div>
+            </div>
+            <div class="table-row" data-copy="103">
+                <div class="table-col">
+                    <span class="auto-increment">0</span>
+                </div>
+                <div class="table-col">
+                    <span class="auto-firstname"></span>
+                </div>
+                <div class="table-col">
+                    <span class="auto-lastname"></span>
+                </div>
+                <div class="table-col">
+                    <span class="auto-title"></span>
+                </div>
+                <div class="table-col">
+                    <span class="auto-integer" min="0" max="250"></span>
+                </div>
+            </div>
+        </div>
+        <div class="pagination-container">
+            <button onclick="previousPage()">Previous</button>
+            <ul class="pagination" data-x="0" data-table="table-0"></ul>
+            <button onclick="nextPage()">Next</button>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-point"></div>
+        </div>
+    </div>
+    <script>
+        const FIRSTNAMES = [
+            'John', 'Steve', 'Marc', 'Franklin', 'Isaac', 'Vincent', 'Edwin',
+            'Ashlyn', 'Anthony', 'Alia', 'Abby', 'Francesca'
+        ];
+
+        const LASTNAMES = [
+            'Shafer', 'Whitetaker', 'Glenn', 'Stephens', 'Sherman', 'Howard',
+            'Kent', 'Clay', 'Beck', 'Simmons', 'Briggs', 'Lee', 'Maxwell'
+        ];
+
+        const TITLES = [
+            'CEO', 'President', 'Vice President', 'Director', 'Manager',
+            'Developer'
+        ];
+
+        const BTN_WIDTH = 4;
+        document.addEventListener('DOMContentLoaded', () => {
+            initCopies();
+            initAutoLimits();
+            initAutoIncrements();
+            initAutoFirstnames();
+            initAutoLastnames();
+            initAutoTitles();
+            initAutoIntegers();
+            initPaginations();
+
+
+            document.querySelector('button[onclick="previousPage()"]').addEventListener('click', previousPage);
+            document.querySelector('button[onclick="nextPage()"]').addEventListener('click', nextPage);
+        });
+
+        function initCopies() {
+            let targets = [...document.querySelectorAll('*[data-copy]')];
+
+            targets.reverse().forEach((original) => {
+                let amount = parseInt(original.getAttribute('data-copy'));
+
+                for (let i = 0; i < amount; i++) {
+                    let copy = original.cloneNode(true);
+
+                    original.parentNode.insertBefore(copy, original.nextSibling);
+                }
+            });
+        }
+
+        function initAutoIncrements() {
+            let autos = document.querySelectorAll('.auto-increment');
+
+            autos.forEach((auto, i) => {
+                auto.innerHTML = i + 1;
+            });
+        }
+
+        const rand = (a, b) => Math.floor((Math.random() * b) + a);
+
+        function initAutoFirstnames() {
+            let autos = document.querySelectorAll('.auto-firstname');
+
+            autos.forEach((auto) => {
+                auto.innerHTML = FIRSTNAMES[rand(0, FIRSTNAMES.length)];
+            });
+        }
+
+        function initAutoLastnames() {
+            let autos = document.querySelectorAll('.auto-lastname');
+
+            autos.forEach((auto) => {
+                auto.innerHTML = LASTNAMES[rand(0, LASTNAMES.length)];
+            });
+        }
+
+        function initAutoTitles() {
+            let autos = document.querySelectorAll('.auto-title');
+
+            autos.forEach((auto) => {
+                auto.innerHTML = TITLES[rand(0, TITLES.length)];
+            });
+        }
+
+        function initAutoIntegers() {
+            let autos = document.querySelectorAll('.auto-integer');
+
+            autos.forEach((auto) => {
+                let min = parseInt(auto.getAttribute('min'));
+                let max = parseInt(auto.getAttribute('max'));
+
+                auto.innerHTML = rand(min, max);
+            });
+        }
+
+        function scrollPages(direction, pagination, table) {
+            let last_active = pagination.querySelector('li.active');
+            let buttons = pagination.querySelectorAll('li');
+            let last_index = Array.from(buttons).indexOf(last_active);
+            let scroll_index = null;
+
+            if (direction && last_index > 0) {
+                scroll_index = last_index - 1;
+            } else if (!direction && last_index < buttons.length - 1) {
+                scroll_index = last_index + 1;
+            }
+
+            if (scroll_index !== null)
+                switchPage(pagination, table, scroll_index);
+        }
+
+        function switchPage(pagination, table, index, bypass = -1) {
+            let limit = parseInt(table.getAttribute("data-limit"));
+            let rows = table.querySelectorAll('.table-row:not(.table-heading)');
+            let buttons = pagination.querySelectorAll('li');
+            let last_active = pagination.querySelector('li.active');
+            let x_pos = parseInt(pagination.getAttribute('data-x'));
+            let x_shift = 0;
+            let target_pos = (-index + 2) * BTN_WIDTH;
+            let page_count = Math.ceil(rows.length / limit);
+
+            if (bypass !== -1) {
+                x_shift = (-bypass + 2) * BTN_WIDTH;
+            } else {
+                if (index > 1 && index < buttons.length - 2) {
+                    x_shift = target_pos;
+                } else if (index === 1) {
+                    x_shift = 0;
+                } else if (index === page_count - 2) {
+                    x_shift = (-page_count + 5) * BTN_WIDTH;
+                } else {
+                    x_shift = x_pos;
+                }
+            }
+
+            rows.forEach((row, row_index) => {
+                if (row_index < index * limit || row_index >= (index * limit) + limit) {
+                    row.style.display = 'none';
+                } else {
+                    row.style.display = 'flex';
+                    row.style.opacity = '0';
+
+                    setTimeout(() => {
+                        row.style.opacity = '1';
+                    }, 50);
+                }
+            });
+
+            last_active.classList.remove('active');
+            buttons[index].classList.add('active');
+            pagination.style.transform = 'translateX(' + x_shift + 'rem)';
+            pagination.setAttribute('data-x', x_shift);
+
+            updatePaginationInfos(pagination, table, page_count, index);
+	updatePaginationProgress(pagination, index, page_count - 1);
+        }
+
+        function previousPage() {
+            let pagination = document.querySelector('.pagination');
+            let last_active = pagination.querySelector('li.active');
+            let buttons = pagination.querySelectorAll('li');
+            let last_index = Array.from(buttons).indexOf(last_active);
+
+            if (last_index > 0) {
+                switchPage(pagination, document.getElementById(pagination.getAttribute('data-table')), last_index - 1);
+            }
+        }
+
+        function nextPage() {
+            let pagination = document.querySelector('.pagination');
+            let last_active = pagination.querySelector('li.active');
+            let buttons = pagination.querySelectorAll('li');
+            let last_index = Array.from(buttons).indexOf(last_active);
+            let max = buttons.length - 1;
+
+            if (last_index < max) {
+                switchPage(pagination, document.getElementById(pagination.getAttribute('data-table')), last_index + 1);
+            }
+        }
+
+
+        function initAutoLimits() {
+            let table_containers = document.querySelectorAll('.table-container');
+            let limit = window.innerHeight / 70;
+
+            table_containers.forEach((container) => {
+                let table = container.querySelector('.table');
+
+                container.setAttribute('style', '--data-limit: ' + limit);
+                table.setAttribute('data-limit', limit = BTN_WIDTH);
+            });
+        }
+        function createPagination(pagination, table)
+{
+	let limit = parseInt(table.getAttribute("data-limit"));
+	let rows = table.querySelectorAll('.table-row:not(.table-heading)');
+	let page_count = Math.ceil(rows.length / limit);
+
+	if (isNaN(limit))
+		limit = 10;
+
+	rows.forEach((row, index) => {
+		if (index >= limit)
+			row.style.display = 'none';
+	});
+	
+	for (let i = 0; i < page_count; i++) {
+		let new_button = document.createElement('li');
+
+		new_button.innerHTML = "<span>" + (i + 1) + "</span>";
+		
+		if (i === 0)
+			new_button.classList.add('active');
+
+		pagination.appendChild(new_button);
+		
+		new_button.addEventListener('click', () => {
+			switchPage(pagination, table, i);
+		});
+	}
+
+	updatePaginationInfos(pagination, table, page_count, 0);
+	initPaginationExtremes(pagination, table, page_count);
+}
+function updatePaginationInfos(pagination, table, page_count, index)
+{
+	let info = pagination.closest('.pagination-container').querySelector('.pagination-info');
+	
+	if (info === null || info === undefined)
+		return;
+
+	let from = 0, to = 0;
+	let rows = table.querySelectorAll('.table-row:not(.table-heading)');
+	let started = false;
+	
+	for (let i = 1; i < rows.length; i++) {
+		let display = rows[i - 1].style.display;
+		
+		if (display !== 'none' && !started) {
+			started = true;
+			from = i;
+		} else if ((display === 'none' && started) || i == rows.length - 1) {
+			to = i == rows.length - 1 ? rows.length : i - 1;
+			break;
+		}
+	}
+	
+	info.innerHTML = 'Displaying ' + from + '-' + to + ' on page ' + (index + 1) + '/' + page_count;
+}
+function initPaginationExtremes(pagination, table, max)
+{
+	let container = pagination.closest('.pagination-container');
+	let left = container.querySelector('.pagination-left');
+	let right = container.querySelector('.pagination-right');
+
+	if (left !== null && left !== undefined) {
+		left.addEventListener('click', () => {
+			switchPage(pagination, table, 0, Math.min(2, max - 1));
+		});
+	}
+
+	if (right !== null && right !== undefined) {
+		right.addEventListener('click', () => {
+			switchPage(pagination, table, max - 1, Math.max(0, max - 3));
+		});
+	}
+
+	initPaginationSteppedExtremes(pagination, table, container, max);
+}
+function initPaginationSteppedExtremes(pagination, table, container, max)
+{
+	let left = container.querySelector('.pagination-left-one');
+	let right = container.querySelector('.pagination-right-one');
+	
+	if (left !== null && left !== undefined) {
+		left.addEventListener('click', () => {
+			let last_active = pagination.querySelector('li.active');
+			let buttons = pagination.querySelectorAll('li');
+			let last_index = Array.from(buttons).indexOf(last_active);
+			
+			if (last_index > 0)
+				switchPage(pagination, table, last_index - 1);
+		});
+	}
+	
+	if (right !== null && right !== undefined) {
+		right.addEventListener('click', () => {
+			let last_active = pagination.querySelector('li.active');
+			let buttons = pagination.querySelectorAll('li');
+			let last_index = Array.from(buttons).indexOf(last_active);
+			
+			if (last_index < max - 1)
+				switchPage(pagination, table, last_index + 1);
+		});
+	}
+}
+    </script>
+</body>
+
+</html>

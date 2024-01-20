@@ -13,7 +13,7 @@
             --white: #FFF;
             --pink: #eb80b1;
             --blue: #419197;
-            --dark-blue: #12486B;
+            --dark-blue: #121b6b;
             --orange: orange;
             --grey: #919ea3;
             --dark-grey: #66777F;
@@ -35,7 +35,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: var(--pink);
+            background-color: var(--dark-blue);
         }
 
         @keyframes swimming {
@@ -92,14 +92,15 @@
             height: 15rem;
             left: 80px;
             bottom: -60px;
+
         }
 
         .fishbowl__background {
             position: relative;
             width: 100%;
             height: 100%;
-            border-radius: 50% 50% 40% 40%;
-            background: linear-gradient(transparent 10%, var(--white) 150%);
+            border-radius: 35%;
+            background: linear-gradient(transparent 10%, var(--white) 140%);
             border-bottom: 1px solid var(--white);
         }
 
@@ -149,6 +150,7 @@
             position: absolute;
             width: 0;
             height: 0;
+            z-index: 2;
             border-left: 0.5rem solid transparent;
             border-right: 0.5rem solid transparent;
             border-bottom: 5rem solid var(--green);
@@ -170,6 +172,42 @@
             bottom: 15%;
             right: 40%;
             border-bottom: 6rem solid var(--green);
+        }
+
+        .fishbowl__stone {
+            position: absolute;
+            width: 50px;
+            height: 10px;
+            background-color: var(--grey);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .fishbowl__seaweed,
+        .fishbowl__stone {
+            position: absolute;
+            transform-origin: bottom center;
+        }
+
+        .fishbowl__stone--1 {
+            bottom: 15%;
+            right: 65%;
+            bottom: 14px;
+            border-bottom: 2rem solid var(--grey);
+        }
+
+        .fishbowl__stone--2 {
+            bottom: 30%;
+            right: 12%;
+            bottom: 8px;
+            border-bottom: 2rem solid var(--grey);
+        }
+
+        .fishbowl__stone--3 {
+            bottom: 15%;
+            right: 35%;
+            bottom: 10px;
+            border-bottom: 3rem solid var(--grey);
         }
 
         .fishbowl__water {
@@ -210,9 +248,9 @@
 
         .fishbowl__top {
             position: absolute;
-            top: 5%;
+            top: 2%;
             left: 15%;
-            width: 70%;
+            width: 73%;
             height: 20%;
             border-radius: 50%;
             box-shadow: 0 2px 2px 3px rgba(var(--white), 0.3);
@@ -569,6 +607,9 @@
             <div class="fishbowl__seaweed fishbowl__seaweed--1"></div>
             <div class="fishbowl__seaweed fishbowl__seaweed--2"></div>
             <div class="fishbowl__seaweed fishbowl__seaweed--3"></div>
+            <div class="fishbowl__stone fishbowl__stone--1"></div>
+            <div class="fishbowl__stone fishbowl__stone--2"></div>
+            <div class="fishbowl__stone fishbowl__stone--3"></div>
         </div>
         <div class="fishbowl__water">
             <div class="fishbowl__water-color"></div>

@@ -85,7 +85,7 @@
         .mickey__lip,
         .mickey__nose-back,
         .mickey__nose-middle {
-            background-color: #fff;
+            background-color: burlywood;
         }
 
         .mickey__eye-back-right,
@@ -108,11 +108,21 @@
 
         .mickey__eye-front-right,
         .mickey__eye-front-left {
-            background-color: #000;
+            background-color: white;
             border-radius: 50%;
             top: 2.95em;
             width: 0.55em;
             height: 1.35em;
+            transform: translate(calc(var(--x) * 0.07em), calc(var(--y) * 0.07em));
+        }
+
+        .mickey__eye-front-center-right,
+        .mickey__eye-front-center-left {
+            background-color: black;
+            border-radius: 50%;
+            top: 0.55em;
+            width: 0.4em;
+            height: 0.7em;
             transform: translate(calc(var(--x) * 0.07em), calc(var(--y) * 0.07em));
         }
 
@@ -122,6 +132,136 @@
 
         .mickey__eye-front-left {
             right: 3.2em;
+        }
+
+        .mickey__ribbon {
+            background-color: red;
+            position: absolute;
+            top: 0.055em;
+            left: 20%;
+            transform: translateX(-50%, -50);
+            width: 4.5em;
+            height: 2.15em;
+            border-radius: 0.35em;
+            z-index: 0;
+        }
+
+        .mickey__ribbon-knot {
+            background-color: red;
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 1em;
+            height: 3em;
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .mickey__ribbon:before,
+        .mickey__ribbon:after {
+            content: "";
+            position: absolute;
+            background-color: red;
+            border-radius: 60px;
+            width: 55%;
+            height: 140%;
+        }
+
+        .mickey__ribbon:before {
+            left: 0;
+            transform-origin: right;
+            transform: skewY(45deg);
+        }
+
+        .mickey__ribbon:after {
+            right: 0;
+            transform-origin: left;
+            transform: skewY(-45deg);
+        }
+
+        .mickey__ribbon-dot--1 {
+            background-color: white;
+            width: 0.5em;
+            height: 0.5em;
+            border-radius: 50%;
+            position: absolute;
+            top: 18%;
+            left: 70%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+        }
+
+        .mickey__ribbon-dot--2 {
+            background-color: white;
+            width: 0.5em;
+            height: 0.5em;
+            border-radius: 50%;
+            position: absolute;
+            top: 18%;
+            left: 30%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+        }
+
+        .mickey__ribbon-dot--3 {
+            background-color: white;
+            width: 0.5em;
+            height: 0.5em;
+            border-radius: 50%;
+            position: absolute;
+            top: -10%;
+            left: 30%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+        }
+
+        .mickey__ribbon-dot--4 {
+            background-color: white;
+            width: 0.5em;
+            height: 0.5em;
+            border-radius: 50%;
+            position: absolute;
+            top: -10%;
+            left: 70%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+        }
+
+        .mickey__ribbon-dot--5 {
+            background-color: white;
+            width: 0.7em;
+            height: 0.7em;
+            border-radius: 50%;
+            position: absolute;
+            top: 5%;
+            left: 38%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+        }
+
+        .mickey__ribbon-dot--6 {
+            background-color: white;
+            width: 1em;
+            height: 1em;
+            border-radius: 50%;
+            position: absolute;
+            top: 13%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+        }
+
+        .mickey__ribbon-dot--7 {
+            background-color: white;
+            width: 0.7em;
+            height: 0.7em;
+            border-radius: 50%;
+            position: absolute;
+            top: 5%;
+            left: 63%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
         }
 
         .mickey__mouth-back-right,
@@ -191,7 +331,7 @@
 
         .mickey__tongue:before,
         .mickey__tongue:after {
-            background-color: #fff;
+            background-color: palevioletred;
             border-radius: 50% 50% 0 0;
             content: "";
             display: block;
@@ -255,9 +395,20 @@
 </head>
 
 <body>
-    <div class="mickey" role="img" aria-label="Black-and-white head of Mickey Mouse">
+    <div class="mickey" role="img" aria-label="head of Mickey Mouse">
         <div class="mickey__ear-right"></div>
         <div class="mickey__ear-left"></div>
+        <div class="mickey" role="img" aria-label="head of Mickey Mouse">
+            <div class="mickey__ribbon"></div>
+            <div class="mickey__ribbon-knot"></div>
+            <div class="mickey__ribbon-dot mickey__ribbon-dot--1"></div>
+            <div class="mickey__ribbon-dot mickey__ribbon-dot--2"></div>
+            <div class="mickey__ribbon-dot mickey__ribbon-dot--3"></div>
+            <div class="mickey__ribbon-dot mickey__ribbon-dot--4"></div>
+            <div class="mickey__ribbon-dot mickey__ribbon-dot--5"></div>
+            <div class="mickey__ribbon-dot mickey__ribbon-dot--6"></div>
+            <div class="mickey__ribbon-dot mickey__ribbon-dot--7"></div>
+        </div>
         <div class="mickey__head"></div>
         <div class="mickey__mouth-back-right"></div>
         <div class="mickey__mouth-back-left"></div>
@@ -266,15 +417,20 @@
         <div class="mickey__mouth-top"></div>
         <div class="mickey__tongue"></div>
         <div class="mickey__eye-back-right"></div>
-        <div class="mickey__eye-back-left"></div>
+        <div class="mickey__eye-back-center"> </div>
+        <div class="mickey__eye-back-left"> </div>
         <div class="mickey__dimple-right"></div>
         <div class="mickey__dimple-left"></div>
-        <div class="mickey__eye-front-right"></div>
-        <div class="mickey__eye-front-left"></div>
+        <div class="mickey__eye-front-right">
+            <div class="mickey__eye-front-center-right"></div>
+        </div>
+        <div class="mickey__eye-front-left">
+            <div class="mickey__eye-front-center-left"></div>
+        </div>
         <div class="mickey__nose-back"></div>
         <div class="mickey__nose-middle"></div>
         <div class="mickey__nose-front"></div>
-    </div>
+
 </body>
 <script>
     window.addEventListener("DOMContentLoaded", () => {
@@ -284,6 +440,10 @@
     class MickeyMouse {
         constructor(el) {
             this.el = document.querySelector(el);
+            this.ribbon = this.el.querySelector('.mickey__ribbon'); 
+            this.knot = this.el.querySelector('.mickey__ribbon-knot');
+            this.dots = Array.from(this.el.querySelectorAll('.mickey__ribbon-dot'));
+
 
             this.init();
         }
@@ -303,6 +463,7 @@
 
             if (this.isMobile) document.addEventListener("touchstart", this.update.bind(this));
         }
+
         update(e) {
             let eX = 0
             let eY = 0;
@@ -327,6 +488,25 @@
             this.el?.style.setProperty("--y", percentY);
             this.el?.style.setProperty("--y-abs", Math.abs(percentY));
         }
+
+
+        update(e) {
+            let eX = 0;
+
+            if (this.isMobile) {
+                const firstTouch = e.touches[0];
+                eX = firstTouch.clientX;
+            } else {
+                eX = e.clientX;
+            }
+
+            const x = Math.round(eX - window.innerWidth / 2);
+
+            this.el?.style.setProperty("--x", x / this.maxDistance);
+            this.el?.style.setProperty("--x-abs", Math.abs(x / this.maxDistance));
+            this.updateRibbonPosition(x);
+        }
+
     }
 </script>
 

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Draw a Chicken</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .chicken {
+      position: relative;
+      width: 150px;
+      height: 200px;
+    }
+    .chicken-body {
+      position: absolute;
+      background-color: #FFD700; 
+      width: 120px;
+      height: 150px;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; 
+      top: 50px;
+      left: 15px;
+    }
+    .chicken-head {
+      position: absolute;
+      background-color: #FFD700; 
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      top: 20px;
+      left: 50px;
+    }
+    .chicken-beak {
+      position: absolute;
+      background-color: #FF4500;
+      width: 20px;
+      height: 10px;
+      top: 30px;
+      left: 60px;
+      transform: rotate(-45deg);
+    }
+    .chicken-eye {
+      position: absolute;
+      background-color: #000;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      top: 25px;
+      left: 70px;
+    }
+    .chicken-leg {
+      position: absolute;
+      background-color: #FF4500; 
+      width: 10px;
+      height: 40px;
+      bottom: 0;
+      border-radius: 5px;
+    }
+    .chicken-leg.left {
+      left: 40px;
+    }
+    .chicken-leg.right {
+      right: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div class="chicken">
+    <div class="chicken-body"></div>
+    <div class="chicken-head"></div>
+    <div class="chicken-beak"></div>
+    <div class="chicken-eye"></div>
+    <div class="chicken-leg left"></div>
+    <div class="chicken-leg right"></div>
+  </div>
+</body>
+</html>
+
+how to perfect my chicken stracture

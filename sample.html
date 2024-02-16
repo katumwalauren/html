@@ -23,6 +23,7 @@
         body {
             height: 100%;
             margin: 0;
+            
         }
 
         #center {
@@ -34,8 +35,8 @@
 
         #game {
             display: grid;
-            grid-template-columns: auto 250px;
-            grid-template-rows: 20fr auto 20fr;
+            grid-template-columns: auto 150px;
+            grid-template-rows: 1fr auto 1fr;
             gap: 30px;
             perspective: 600px;
         }
@@ -140,38 +141,51 @@
 
             border-right: 10px solid var(--joystick-color);
         }
-
-        .dog-container {
-            margin-top: -150px;
-            margin-left: -170px;
+        .outlet {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            background-color: pink;
+            width: 20px;
+            height: 40px;
+            border-radius: 5px;
+            margin-left: 290px;
             z-index: 3;
         }
 
-        .dog-image {
-            width: 40px;
-            height: auto;
+        .outlet.top {
+            top: 5px;
+        }
+        main {
+            margin-left: -1200px;
+            margin-top: -100px;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
-        .house-container {
-            margin-top: 144px;
-            margin-left: 270px;
-            position: absolute;
-            top: 70%;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 3;
+        #game-image {
+            width: 300px; 
+            height: auto; 
         }
 
-        .house-image {
-            width: 45px;
-            height: auto;
+        .outlet.bottom {
+            bottom: -85px;
+        }
+        .house {
+            padding: 0;
+            height: 70vh; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-
+        #game-image {
+            width: 100px; 
+            height: auto; 
+            margin-left: 150px;
+            margin-top: -400px;
+        }
         #note {
             grid-row: 3;
             grid-column: 2;
@@ -196,14 +210,13 @@
             background-color: var(--ball-color);
             width: 10px;
             height: 10px;
-            z-index: 3;
         }
 
         .wall {
             position: absolute;
             background-color: var(--wall-color);
             transform-origin: top center;
-            margin-left: -px;
+            margin-left: -5px;
         }
 
         .wall::before,
@@ -241,15 +254,15 @@
     <div id="center">
         <div id="game">
             <div id="maze">
-                <div class="dog-container">
-                    <img class="dog-image"
-                        src="https://www.pinclipart.com/picdir/middle/552-5529186_bingo-the-dog-or-farmer-clipart.png"
-                        alt="Bingo the Dog or Farmer Clipart">
+                <div class="outlet top" style="left: 150px;">
+                    <main>
+                        <img id="game-image" src="https://www.pinclipart.com/picdir/middle/552-5529186_bingo-the-dog-or-farmer-clipart.png" alt="Bingo the Dog or Farmer Clipart">
+                    </main>
                 </div>
-                <div class="house-container">
-                    <img class="house-image"
-                        src="https://m.media-amazon.com/images/I/51F1Eqa0ykS._AC_UF1000,1000_QL80_.jpg"
-                        alt="Game Image">
+                <div class="outlet bottom" style="left: 150px;">
+                    <div class="house">
+                        <img id="game-image" src="https://m.media-amazon.com/images/I/51F1Eqa0ykS._AC_UF1000,1000_QL80_.jpg" alt="Game Image">
+                    </div>
                 </div>
             </div>
             <div id="joystick">
@@ -261,6 +274,7 @@
             </div>
             <div id="note">
                 Click the joystick to start!
+                <p>Move every ball to the center. Ready for hard mode? Press H</p>
             </div>
         </div>
     </div>
@@ -369,6 +383,7 @@
             mazeElement.appendChild(ball);
             ballElements.push(ball);
         });
+
         const walls = [
             { column: 0, row: 0, horizontal: true, length: 10 },
             { column: 0, row: 0, horizontal: false, length: 9 },
@@ -377,19 +392,22 @@
 
             { column: 0, row: 6, horizontal: true, length: 1 },
             { column: 0, row: 8, horizontal: true, length: 1 },
-            { column: 6, row: 5, horizontal: true, length: 1 },
 
             { column: 1, row: 1, horizontal: true, length: 2 },
             { column: 1, row: 7, horizontal: true, length: 1 },
+            { column: 6, row: 4, horizontal: true, length: 1 },
+
 
             { column: 2, row: 2, horizontal: true, length: 2 },
             { column: 2, row: 4, horizontal: true, length: 1 },
             { column: 2, row: 5, horizontal: true, length: 1 },
-            { column: 2, row: 6, horizontal: true, length: 1 },
+            { column: 2, row: 7, horizontal: true, length: 1 },
 
-            { column: 3, row: 3, horizontal: true, length: 1 },
+
+            { column: 4, row: 3, horizontal: true, length: 1 },
             { column: 3, row: 8, horizontal: true, length: 3 },
-            { column: 2, row: 5, horizontal: true, length: 2 },
+            { column: 2, row: 4, horizontal: true, length: 3 },
+
 
             { column: 4, row: 6, horizontal: true, length: 1 },
 
@@ -410,6 +428,8 @@
 
             { column: 1, row: 1, horizontal: false, length: 2 },
             { column: 1, row: 4, horizontal: false, length: 2 },
+            { column: 5, row: 4, horizontal: false, length: 1 },
+
 
             { column: 2, row: 2, horizontal: false, length: 2 },
             { column: 2, row: 5, horizontal: false, length: 1 },
@@ -437,7 +457,7 @@
 
             { column: 9, row: 1, horizontal: false, length: 1 },
             { column: 9, row: 5, horizontal: false, length: 2 }
-
+            
         ].map((wall) => ({
             x: wall.column * (pathW + wallW),
             y: wall.row * (pathW + wallW),
@@ -456,7 +476,7 @@
       transform: rotate(${horizontal ? -90 : 0}deg);
     `;
 
-         mazeElement.appendChild(wall);
+            mazeElement.appendChild(wall);
         });
 
         const holes = [
@@ -506,7 +526,7 @@
         transform: rotateY(${rotationY}deg) rotateX(${-rotationX}deg)
       `;
 
-                const gravity = 1;
+                const gravity = 2;
                 const friction = 0.01;
 
                 accelerationX = gravity * Math.sin((rotationY / 180) * Math.PI);
@@ -516,37 +536,29 @@
             }
         });
 
-        function isBallInHouse(ball) {
-            const houseRect = document.querySelector('.house-container').getBoundingClientRect();
-            const ballRect = ball.getBoundingClientRect();
+        window.addEventListener("keydown", function (event) {
 
-            return (
-                ballRect.left + ballRect.width >= houseRect.left &&
-                ballRect.right - ballRect.width <= houseRect.right &&
-                ballRect.top + ballRect.height >= houseRect.top &&
-                ballRect.bottom - ballRect.height <= houseRect.bottom
-            );
-        }
+            if (![" ", "H", "h", "E", "e"].includes(event.key)) return;
 
-        function main(timestamp) {
-            if (!gameInProgress) return;
+            event.preventDefault();
 
-            if (previousTimestamp === undefined) {
-                previousTimestamp = timestamp;
-                window.requestAnimationFrame(main);
+            if (event.key == " ") {
+                resetGame();
                 return;
             }
 
-            if (balls.some(isBallInHouse)) {
-                noteElement.innerHTML = `Congratulations, you did it!`;
-                noteElement.style.opacity = 1;
-                gameInProgress = false;
+            if (event.key == "H" || event.key == "h") {
+                hardMode = true;
+                resetGame();
                 return;
             }
 
-            previousTimestamp = timestamp;
-            window.requestAnimationFrame(main);
-        }
+            if (event.key == "E" || event.key == "e") {
+                hardMode = false;
+                resetGame();
+                return;
+            }
+        });
 
         function resetGame() {
             previousTimestamp = undefined;
@@ -561,18 +573,29 @@
             mazeElement.style.cssText = `
       transform: rotateY(0deg) rotateX(0deg)
     `;
+
             joystickHeadElement.style.cssText = `
       left: 0;
       top: 0;
       animation: glow;
       cursor: grab;
     `;
+
+            if (hardMode) {
+                noteElement.innerHTML = `Click the joystick to start!
+        <p>Hard mode, Avoid black holes. Back to easy mode? Press E</p>`;
+            } else {
+                noteElement.innerHTML = `Click the joystick to start!
+        <p>Move every ball to the center. Ready for hard mode? Press H</p>`;
+            }
+            noteElement.style.opacity = 1;
+
             balls = [
                 { column: 0, row: 0 },
 
             ].map((ball) => ({
-                x: ball.column * (wallW + pathW) + (wallW / 1.5 + pathW / 1.5),
-                y: ball.row * (wallW + pathW) + (wallW / 1.5 + pathW / 1.5),
+                x: ball.column * (wallW + pathW) + (wallW / 2 + pathW / 2),
+                y: ball.row * (wallW + pathW) + (wallW / 2 + pathW / 2),
                 velocityX: 0,
                 velocityY: 0
             }));
@@ -592,21 +615,28 @@
                 holes.forEach(({ x, y }) => {
                     const ball = document.createElement("div");
                     ball.setAttribute("class", "black-hole");
-                    ball.style.cssText = `left: ${x}px; top: ${y}px;`;
+                    ball.style.cssText = `left: ${x}px; top: ${y}px; `;
 
                     mazeElement.appendChild(ball);
                     holeElements.push(ball);
                 });
             }
         }
+
         function main(timestamp) {
+
+            if (!gameInProgress) return;
+
             if (previousTimestamp === undefined) {
                 previousTimestamp = timestamp;
                 window.requestAnimationFrame(main);
                 return;
             }
+
             const maxVelocity = 1.5;
+
             const timeElapsed = (timestamp - previousTimestamp) / 16;
+
             try {
 
                 if (accelerationX != undefined && accelerationY != undefined) {
@@ -668,7 +698,23 @@
                                             x: ball.nextX,
                                             y: ball.nextY
                                         });
+                                        if (distance < ballSize / 2 + wallW / 2) {
+                                            if (debugMode && wi > 4)
+                                                console.warn("too close h head", distance, ball);
 
+                                            const closest = closestItCanBe(wallStart, {
+                                                x: ball.nextX,
+                                                y: ball.nextY
+                                            });
+                                            const rolled = rollAroundCap(wallStart, {
+                                                x: closest.x,
+                                                y: closest.y,
+                                                velocityX: ball.velocityX,
+                                                velocityY: ball.velocityY
+                                            });
+
+                                            Object.assign(ball, rolled);
+                                        }
                                     }
 
                                     if (
@@ -754,6 +800,32 @@
                                         }
                                     }
 
+                                    if (
+                                        ball.nextY - ballSize / 2 <= wallEnd.y + wallW / 2 &&
+                                        ball.nextY > wallEnd.y
+                                    ) {
+                                        const distance = distance2D(wallEnd, {
+                                            x: ball.nextX,
+                                            y: ball.nextY
+                                        });
+                                        if (distance < ballSize / 2 + wallW / 2) {
+                                            if (debugMode && wi > 4)
+                                                console.warn("too close v tail", distance, ball);
+
+                                            const closest = closestItCanBe(wallEnd, {
+                                                x: ball.nextX,
+                                                y: ball.nextY
+                                            });
+                                            const rolled = rollAroundCap(wallEnd, {
+                                                x: closest.x,
+                                                y: closest.y,
+                                                velocityX: ball.velocityX,
+                                                velocityY: ball.velocityY
+                                            });
+
+                                            Object.assign(ball, rolled);
+                                        }
+                                    }
 
                                     if (ball.nextY >= wallStart.y && ball.nextY <= wallEnd.y) {
                                         if (ball.nextX < wall.x) {
@@ -771,6 +843,19 @@
                             }
                         });
 
+                        if (hardMode) {
+                            holes.forEach((hole, hi) => {
+                                const distance = distance2D(hole, {
+                                    x: ball.nextX,
+                                    y: ball.nextY
+                                });
+
+                                if (distance <= holeSize / 2) {
+                                    holeElements[hi].style.backgroundColor = "red";
+                                    throw Error("The ball fell into a hole");
+                                }
+                            });
+                        }
                         ball.x = ball.x + ball.velocityX;
                         ball.y = ball.y + ball.velocityY;
                     });
@@ -780,14 +865,14 @@
                 }
                 if (
                     balls.every(
-                        (ball) => distance2D(ball, { x: 150 / 2, y: 115 / 2 }) < 35 / 2
+                        (ball) => distance2D(ball, { x: 350 / 2, y: 315 / 2 }) < 65 / 2
                     )
                 ) {
                     noteElement.innerHTML = `Congrats, you did it!
-                   ${!hardMode ? "<p>Press H for hard mode</p>" : ""}
-                   <p>
+        ${!hardMode ? "<p>Press H for hard mode</p>" : ""}
+        <p>
 
-                 </p>`;
+        </p>`;
                     noteElement.style.opacity = 1;
                     gameInProgress = false;
                 } else {
@@ -797,8 +882,9 @@
             } catch (error) {
                 if (error.message == "The ball fell into a hole") {
                     noteElement.innerHTML = `A ball fell into a black hole! Press space to reset the game.
-                   <p>
-                 </p>`;
+        <p>
+          Back to easy? Press E
+        </p>`;
                     noteElement.style.opacity = 1;
                     gameInProgress = false;
                 } else throw error;
@@ -806,5 +892,5 @@
         }
     </script>
 </body>
+
 </html>
-how to make my ball hit the house image

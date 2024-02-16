@@ -161,7 +161,6 @@
             });
         });
 
-        // Save the editor content to local storage (you may use a backend for real storage)
         const editors = document.querySelectorAll('.editor');
         editors.forEach(editor => {
             editor.addEventListener("input", function () {
@@ -169,7 +168,6 @@
                 localStorage.setItem("editorContent", content);
             });
 
-            // Restore content from local storage on page load
             const savedContent = localStorage.getItem("editorContent");
             if (savedContent) {
                 editor.innerHTML = savedContent;

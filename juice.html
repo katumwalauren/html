@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Best Juice</title>
+    <style>
+        :root {
+            --main-bg-color: black;
+            --cup-color: blueviolet;
+            --cup-width: 30vw;
+            --cup-height: 24vw;
+            --cup-handle-width: 5vw;
+            --cup-handle-height: calc(2 * var(--cup-handle-width));
+            --cup-border-width: 2vw;
+            --cup-inside-width: calc(var(--cup-width) - var(--cup-border-width));
+            --cup-inside-height: calc(var(--cup-height) - var(--cup-border-width));
+            --border-width: 1vw;
+            --main-border: var(--border-width) solid var(--cup-color);
+            --plate-width: 25vw;
+            --plate-height: 2vw;
+            --orange-bottom: 0;
+            --water-bottom: 80%;
+            --carrots-bottom: 0;
+            --ginger-bottom: 0;
+            --watermelon-bottom: 0;
+            --mintleaves-bottom: 0;
+            --kiwi-bottom: 0;
+            --cucumber-bottom: 0;
+            --lemon-bottom: 0;
+            --milk-bottom: 0;
+            --beetroot-bottom: 0;
+            --redApple-bottom: 0;
+            --celery-bottom: 0;
+            --avocado-bottom: 0;
+            --mango-bottom: 0;
+            --honey-bottom: 0;
+            --pineapple-chunk-bottom: 0;
+            --cocnut-water-bottom: 0;
+            --yellowBanana-bottom: 0;
+            --carrots-color: #fc5f26;
+            --water-color: #b1dce2;
+            --orange-color: #fc8626;
+            --ginger-color: #fceecb;
+            --watermelon-color: #fc2626;
+            --mintleaves-color: #2dfc26;
+            --lemon-color: #26fc46;
+            --kiwi-color: #a6fc26;
+            --cucumber-color: #26fc5c;
+            --yellowBanana-color: #f5fc26;
+            --milk-color: #f0ebe5;
+            --beetroot-color: #fc2626;
+            --redApple-color: #fc3426;
+            --celery-color: #95fc26;
+            --avocado-color: #26fc2d;
+            --mango-color: #f5fc26;
+            --honey-color: #3c302f;
+            --coconut-water-color: #f0ebe5;
+            --pineapple-chunk-color: #f5fc26;
+        }
+
+        body {
+            height: 100vh;
+            width: 100vw;
+            background: #00121bec;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .social {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 90vw;
+        }
+
+        .juice_name {
+            color: rgb(47, 57, 255);
+            text-align: center;
+            font-size: 4vw;
+        }
+
+        .options {
+            display: grid;
+            grid-gap: 2vh;
+            grid-template-rows: repeat(10, 35px);
+            grid-template-columns: 170px;
+            justify-content: space-evenly;
+            box-sizing: border-box;
+            margin-top: 90px;
+            margin-bottom: 20px;
+            margin-left: 40px;
+            margin-right: auto;
+        }
+
+
+        .options button {
+            user-select: none;
+            background: rgba(214, 217, 227, 0.6);
+            outline: none;
+            font-size: 1rem;
+            border: 2px solid blueviolet;
+            box-shadow: none;
+            color: black;
+            box-sizing: border-box;
+            border-radius: 1.5vh;
+        }
+
+        .options button:hover {
+            cursor: pointer;
+            border-width: 4px;
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        .options .selected {
+            border-width: 4px;
+            background: rgba(255, 255, 255, 0.8);
+            box-sizing: border-box;
+        }
+
+        .cup {
+            width: var(--cup-width);
+            height: var(--cup-height);
+            border-radius: 0 0 10vw 10vw;
+            position: relative;
+            background-color: var(--cup-color);
+            z-index: 10;
+            box-sizing: border-box;
+        }
+
+        .cup::after {
+            content: "";
+            position: absolute;
+            top: 10%;
+            left: calc(100% - 1vw);
+            width: var(--cup-handle-width);
+            height: var(--cup-handle-height);
+            border: var(--main-border);
+            border-radius: 50% 30%;
+        }
+
+        .plate {
+            position: absolute;
+            top: calc(100% + 1vw);
+            left: calc((var(--cup-width) - var(--plate-width)) / 2);
+            width: var(--plate-width);
+            background: var(--cup-color);
+            height: var(--plate-height);
+            border-radius: 1vw;
+        }
+
+        .filling {
+            position: absolute;
+            left: calc(var(--cup-border-width) / 2);
+            bottom: calc(var(--cup-border-width) / 2);
+            width: var(--cup-inside-width);
+            height: var(--cup-inside-height);
+            overflow: hidden;
+            border-radius: 0 0 10vw 10vw;
+            background-color: var(--main-bg-color);
+            bottom: 1vw;
+        }
+
+        .filling div {
+            position: absolute;
+            width: 100%;
+            transition: all 1s linear;
+            color: #817f75;
+            display: flex;
+            align-items: fixed;
+            justify-content: center;
+            height: 0;
+            overflow: hidden;
+            font-size: 3vw;
+            height: 100%;
+            bottom: 100%;
+            box-sizing: border-box;
+        }
+
+        .filling.reset.carrot {
+            --water-bottom: -70%;
+            --carrots-bottom: 5%;
+            --orange-bottom: -50%;
+            --ginger-bottom: -30%;
+        }
+
+        .filling.reset.watermelon {
+            --watermelon-bottom: 4%;
+            --lemon-bottom: -80%;
+            --ginger-bottom: -60%;
+            --mintleaves-bottom: -45%;
+        }
+
+        .filling.reset.kiwi {
+            --kiwi-bottom: 2%;
+            --cucumber-bottom: -70%;
+            --ginger-bottom: -50%;
+        }
+
+        .filling.reset.yellowBanana {
+            --milk-bottom: -45%;
+            --yellowBanana-bottom: 2%;
+        }
+
+        .filling.reset.beetroot {
+            --beetroot-bottom: 2%;
+            --celery-bottom: -80%;
+            --ginger-bottom: -60%;
+            --redApple-bottom: -40%;
+        }
+
+        .filling.reset.avocado {
+            --avocado-bottom: 4%;
+            --milk-bottom: -50%;
+        }
+
+        .filling.reset.mango {
+            --mango-bottom: 4%;
+            --water-bottom: -50%;
+            --honey-bottom: -81%;
+        }
+
+        .filling.reset.apple {
+            --redApple-bottom: 2%;
+            --coconut-water-bottom: -50%;
+            --orange-bottom: -81%;
+        }
+
+        .filling.reset.pineapple {
+            --pineapple-chunk-bottom: 1%;
+            --lemon-bottom: -80%;
+            --mintleaves-bottom: -60%;
+        }
+
+        div.water {
+            background: var(--water-color);
+            bottom: var(--water-bottom);
+            line-height: 4vw;
+            z-index: 8;
+        }
+
+        div.carrot {
+            background: var(--carrots-color);
+            bottom: var(--carrots-bottom);
+            z-index: 4;
+        }
+
+        div.orange {
+            background: var(--orange-color);
+            bottom: var(--orange-bottom);
+            z-index: 6;
+        }
+
+        div.ginger {
+            background: var(--ginger-color);
+            bottom: var(--ginger-bottom);
+            z-index: 6;
+        }
+
+        div.watermelon {
+            background: var(--watermelon-color);
+            bottom: var(--watermelon-bottom);
+            z-index: 4;
+        }
+
+        div.lemon {
+            background: var(--lemon-color);
+            bottom: var(--lemon-bottom);
+            z-index: 8;
+        }
+
+        div.mintleaves {
+            background: var(--mintleaves-color);
+            bottom: var(--mintleaves-bottom);
+            z-index: 5;
+        }
+
+        div.kiwi {
+            background: var(--kiwi-color);
+            bottom: var(--kiwi-bottom);
+            z-index: 5;
+        }
+
+        div.cucumber {
+            background: var(--cucumber-color);
+            bottom: var(--cucumber-bottom);
+            z-index: 8;
+        }
+
+        div.yellowBanana {
+            background: var(--yellowBanana-color);
+            bottom: var(--yellowBanana-bottom);
+            z-index: 8;
+        }
+
+        div.milk {
+            background: var(--milk-color);
+            bottom: var(--milk-bottom);
+            z-index: 8;
+        }
+
+        div.beetroot {
+            background: var(--beetroot-color);
+            bottom: var(--beetroot-bottom);
+            z-index: 2;
+        }
+
+        div.redApple {
+            background: var(--redApple-color);
+            bottom: var(--redApple-bottom);
+            z-index: 4;
+        }
+
+        div.celery {
+            background: var(--celery-color);
+            bottom: var(--celery-bottom);
+            z-index: 8;
+        }
+
+        div.avocado {
+            background: var(--avocado-color);
+            bottom: var(--avocado-bottom);
+            z-index: 5;
+        }
+
+        div.honey {
+            background: var(--honey-color);
+            bottom: var(--honey-bottom);
+            z-index: 8;
+        }
+
+        div.mango {
+            background: var(--mango-color);
+            bottom: var(--mango-bottom);
+            z-index: 3;
+        }
+
+        div.coconut-water {
+            background: var(--coconut-water-color);
+            bottom: var(--coconut-water-bottom);
+            z-index: 4;
+        }
+
+        div.pineapple-chunk {
+            background: var(--pineapple-chunk-color);
+            bottom: var(--pineapple-chunk-bottom);
+            z-index: 4;
+        }
+
+        .filling.reset {
+            --water-bottom: -100%;
+            --orange-bottom: -100%;
+            --ginger-bottom: -100%;
+            --carrots-bottom: -100%;
+            --watermelon-bottom: -100%;
+            --mintleaves-bottom: -100%;
+            --lemon-bottom: -100%;
+            --kiwi-bottom: -100%;
+            --cucumber-bottom: -100%;
+            --yellowBanana-bottom: -100%;
+            --milk-bottom: -100%;
+            --beetroot-bottom: -100%;
+            --redApple-bottom: -100%;
+            --celery-bottom: -100%;
+            --avocado-bottom: -100%;
+            --mango-bottom: -100%;
+            --honey-bottom: -100%;
+            --coconut-water-bottom: -100%;
+            --pineapple-chunk-bottom: -100%;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="options">
+        <button id="carrot">Carrot Juice</button>
+        <button id="watermelon">watermelon Juice</button>
+        <button id="kiwi">kiwi Juice</button>
+        <button id="yellowBanana">yellowBanana Juice</button>
+        <button id="beetroot">Beetroot Juice</button>
+        <button id="avocado">Avocado Juice</button>
+        <button id="mango">Mango Juice</button>
+        <button id="apple">Apple Juice</button>
+        <button id="pineapple">Pineapple Juice</button>
+
+    </div>
+    <div class="container">
+        <h1 class="juice_name">Choose your Juice</h1>
+        <div class="cup">
+            <div class="filling reset">
+                <div class="carrot">Carrots</div>
+                <div class="water">Water</div>
+                <div class="ginger">Ginger</div>
+                <div class="orange">Orange</div>
+                <div class="watermelon">watermelon</div>
+                <div class="lemon">Lemon</div>
+                <div class="mintleaves">mintleaves</div>
+                <div class="cucumber">cucumber</div>
+                <div class="kiwi">kiwi</div>
+                <div class="yellowBanana">yellow Banana</div>
+                <div class="milk">milk</div>
+                <div class="beetroot">Beetroot</div>
+                <div class="redApple">Red apple</div>
+                <div class="celery">Celery</div>
+                <div class="avocado">Avocado</div>
+                <div class="mango">mangos</div>
+                <div class="honey">honey</div>
+                <div class="coconut-water">Coconut water</div>
+                <div class="pineapple-chunk">Pineapple chunks</div>
+            </div>
+
+            <div class="plate"></div>
+        </div>
+    </div>
+
+    <script>
+        const juice_name = document.querySelector(".juice_name");
+        const juice_filling = document.querySelector(".filling");
+        const buttons = document.querySelectorAll("button");
+        let current_element = null;
+
+        const changeCoffeeType = (selected) => {
+            if (current_element) {
+                current_element.classList.remove("selected");
+                juice_filling.classList.remove(current_element.id);
+            }
+            current_element = selected;
+            juice_filling.classList.add(current_element.id);
+            current_element.classList.add("selected");
+            juice_name.innerText = selected.innerText;
+        };
+
+        const setActiveType = (element) => {
+            element.toggleClass("selected");
+        };
+
+        [...buttons].forEach((button) => {
+            button.addEventListener("click", () => {
+                changeCoffeeType(button);
+            });
+        });
+    </script>
+</body>
+
+</html>

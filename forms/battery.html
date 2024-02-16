@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>phone battrey</title>
+  <style>
+    body {
+      background-color: burlywood;
+    }
+
+    .phone {
+      position: relative;
+      width: 200px;
+      height: 400px;
+      background-color: #333;
+      border-radius: 20px;
+      margin: 50px auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 6px solid wheat;
+    }
+
+    .battery {
+      position: absolute;
+      top: 50px;
+      left: 50px;
+      width: 100px;
+      height: 200px;
+      background-color: #ddd;
+      border-radius: 10px;
+    }
+
+    .battery-level {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background-color: #4CAF50;
+      border-radius: 0 0 10px 10px;
+    }
+
+    .charger {
+      display: none;
+      position: absolute;
+      top: 400px;
+      left: 50%;
+      width: 40px;
+      height: 20px;
+      background-color: #000;
+      transform: translateX(-50%);
+      transition: top 0.5s ease-in-out;
+    }
+
+    .battrey-text {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      text-align: center;
+      color: #fff;
+    }
+
+    .sound-spot {
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 15px;
+      background-color: #000;
+      z-index: 1;
+      border-radius: 10px;
+    }
+
+    .sound-spot audio {
+      display: none;
+    }
+    .camera-spot {
+  position: absolute;
+  top: 10px; 
+  left: 80%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  background-color: black;
+  border-radius: 50%; 
+  z-index: 1; 
+}
+    .wire {
+      display: none;
+      position: absolute;
+      top: 400px;
+      left: 50%;
+      width: 2px;
+      height: 50px;
+      background-color: black;
+      transform: translateX(-50%);
+    }
+
+    button {
+      display: block;
+      margin: 20px auto;
+      position: fixed;
+      bottom: 20px;
+      left: 70%;
+      transform: translateX(-50%);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="phone">
+    <div class="sound-spot">
+      <audio id="notificationSound" src="notification.mp3"></audio>
+    </div>
+    <div class="camera-spot"></div> 
+    <div id="battery" class="battery">
+      <div id="battery-level" class="battery-level"></div>
+    </div>
+    <div id="battreyText" class="battrey-text">Low Battery</div>
+    <div id="charger" class="charger"></div>
+    <div class="wire"></div>
+  </div>
+  <button onclick="plugInCharger()">Plug In Charger</button>
+  <script>
+    let batteryLevel = 0;
+
+    document.getElementById('notificationSound').play();
+    function plugInCharger() {
+      const battery = document.getElementById('battery-level');
+      const charger = document.getElementById('charger');
+      const wire = document.querySelector('.wire');
+      const chargingText = document.getElementById('battreyText');
+
+      charger.style.display = 'block';
+      wire.style.display = 'block';
+      chargingText.textContent = "Charging";
+
+      const chargingInterval = setInterval(function () {
+        batteryLevel += 5;
+        if (batteryLevel > 100) {
+          batteryLevel = 100;
+          clearInterval(chargingInterval);
+        }
+        battery.style.height = batteryLevel + '%';
+        if (batteryLevel === 100) {
+          charger.style.backgroundColor = '#4CAF50';
+          charger.style.top = '200px';
+          wire.style.display = 'none';
+          chargingText.textContent = "Fully Charged";
+        }
+      }, 500);
+    }
+  </script>
+</body>
+
+</html>
